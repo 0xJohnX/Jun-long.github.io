@@ -2,24 +2,94 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on 智能改造家</title>
-    <link>https://junlongzhao.github.io/post/</link>
+    <link>https://jun-long.github.io/post/</link>
     <description>Recent content in Posts on 智能改造家</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2017</copyright>
-    <lastBuildDate>Sat, 26 Aug 2017 21:49:19 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 05 Sep 2017 01:49:19 +0800</lastBuildDate>
     
-	<atom:link href="https://junlongzhao.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://jun-long.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>树莓派 &#43; Home Assistant &#43; HomeKit 从零开始打造个人智能家居系统（7）：Floorplan for Home Assistant</title>
+      <link>https://jun-long.github.io/post/15039393417743/</link>
+      <pubDate>Tue, 05 Sep 2017 01:49:19 +0800</pubDate>
+      
+      <guid>https://jun-long.github.io/post/15039393417743/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;通过本篇教程，你将获得 Home Assistant 的另一种交互方式：平面图（Floorplan），并跟随示例创建属于你独一无二的个人家庭控制界面。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;如果说 Home Assistant 复杂难搞，那么就在于它的配置过程实在没有什么用户体验可言，任何一个细节，从功能到展示、从设备到服务都需要你自己去安排；而如果说 Home Assistant 为何吸引人，那么也在于它的拥有无限的可能，你能够构建出只属于你的 Style。本系列前期的文章，主要为了引领大家入门，对 Home Assistant 的整个配置过程有一个了解，在此基础上，通过&lt;a href=&#34;home-assistant.io&#34;&gt;官网&lt;/a&gt;、&lt;a href=&#34;https://bbs.hassbian.com&#34;&gt;论坛&lt;/a&gt;的补充，慢慢打造你的个人智能家居系统。从本篇开始，我会试着分享一些更个性化的设置，一些额外的实验性的功能。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>树莓派 &#43; Home Assistant &#43; HomeKit 从零开始打造个人智能家居系统（6）：自动化</title>
+      <link>https://jun-long.github.io/post/15039393082613/</link>
+      <pubDate>Fri, 01 Sep 2017 01:49:19 +0800</pubDate>
+      
+      <guid>https://jun-long.github.io/post/15039393082613/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;通过本篇教程，你将了解 Home Assistant 自动化概念，以及自动化的组成，并通过一些例子学习如何编写自己的自动化配置。（ &lt;a href=&#34;https://home-assistant.io/docs/automation/&#34;&gt;官方文档&lt;/a&gt;与&lt;a href=&#34;https://home-assistant.io/cookbook/&#34;&gt;官方示例&lt;/a&gt; ）&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;智能家居为人诟病的一点往往是它不够“智能”，而国内的厂家又爱拿“智能”、“云”、“物联网+”之类高大上的词语做噱头，当你将这些设备买回家后，你发现它没有想象中的那么好用，难免就会失望。目前的智能家居系统，与其强调“智能”（Smart），我认为不如 Home Assistant 中的描述的“自动化”（Automation）来的贴切，事实上，在 HomeKit 以及 米家 App 中的都是以“自动化”来命名它们的。&lt;/p&gt;
+
+&lt;p&gt;正是“自动化”的加入，使得 Home Assistant 不再呆板，在特定情况下，你甚至可以不再使用那些操作界面，让一切自动运转，真正的“智能”起来。以我自己举例，家中除了我，没人捣鼓这些东西，都是靠“自动化”设置，实现灯光、新风、监控、警戒、夜间空调等的日常使用。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>树莓派 &#43; Home Assistant &#43; HomeKit 从零开始打造个人智能家居系统（5）：进阶配置 Home Assistant</title>
+      <link>https://jun-long.github.io/post/15039392986790/</link>
+      <pubDate>Tue, 29 Aug 2017 21:49:19 +0800</pubDate>
+      
+      <guid>https://jun-long.github.io/post/15039392986790/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;通过本篇教程，你将完成对 Home Assistant 的进一步配置，个性化设置与管理你的智能家居设备。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;题外话&#34;&gt;题外话&lt;/h2&gt;
+
+&lt;p&gt;关于智能家居，我与很多人一样，因新房装修而开始关注，2014 年智能家居市场方兴未艾，还是传统智能家居厂商的天下，同年 Apple 在 WWDC 上发布了 HomeKit 智能家居平台，到了 2015 年才在 iOS 9 中内置了“家庭”App。而在这一年，国内也诞生了小米智能家庭、阿里智能、京东微联等平台，可以说，智能家居领域我们是和世界同步的。&lt;/p&gt;
+
+&lt;p&gt;2016 年接触了 &lt;a href=&#34;https://github.com/nfarina/homebridge&#34;&gt;Homebridge&lt;/a&gt; 、 &lt;a href=&#34;https://developer.apple.com/homekit/&#34;&gt;HomeKit&lt;/a&gt;、&lt;a href=&#34;https://home-assistant.io/&#34;&gt;Home Assistant&lt;/a&gt; 等内容，我就尝试着自己也整一套试试。用户规模决定了相关领域的繁荣，网上关于智能家居的文章汗牛充栋，我自认为还是有些软硬件基础，期间却也走过不少弯路。如今跟大家分享这一点个人爱好，也不免拾人牙慧，因为官方文档就在那里，你不可能跳出这个框架之外。书写这个系列文章的初衷，就是想让更多人能够加入进来，哪怕是零基础的小白。所以我会选择一个我认为最笔直的路给你，我会添加很多的引用，还会提到一些我认为容易错的点，并且尽量不涉及代码与命令行，与其说是原创教程，不如说是一个中文版本的注释或诠释更为恰当。&lt;/p&gt;
+
+&lt;p&gt;有人跟我说，还是太复杂，99％的有智能化需求的客户不会花时间去整这些。&lt;/p&gt;
+
+&lt;p&gt;那么，这就是为了那1%不满足现有平台和 App 的用户而生的，足矣。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>树莓派 &#43; Home Assistant &#43; HomeKit 从零开始打造个人智能家居系统（4）：连接小米设备与HomeKit</title>
+      <link>https://jun-long.github.io/post/15037439183633/</link>
+      <pubDate>Mon, 28 Aug 2017 23:49:19 +0800</pubDate>
+      
+      <guid>https://jun-long.github.io/post/15037439183633/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;通过本篇教程，你将在 Home Assistant 中接入小米智能家居设备，并在安装配置 Home Bridge 插件后，实现 HomeKit 功能，即在 iOS 家庭 App 中控制这些设备。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;智能家居是一个系统化的工程，设备之间的通信就是基础建设。消费级智能家居硬件设备的爆发，使得我们能够轻松的搭建个人智能家居系统，而平台与产品的多样性也带来了多种的通信方式，诸如 Zigbee、蓝牙、WiFi、LAN。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>树莓派 &#43; Home Assistant &#43; HomeKit 从零开始打造个人智能家居系统（3）：初步配置 Home Assistant</title>
-      <link>https://junlongzhao.github.io/post/15037439183550/</link>
+      <link>https://jun-long.github.io/post/15037439183550/</link>
       <pubDate>Sat, 26 Aug 2017 21:49:19 +0800</pubDate>
       
-      <guid>https://junlongzhao.github.io/post/15037439183550/</guid>
+      <guid>https://jun-long.github.io/post/15037439183550/</guid>
       <description>&lt;blockquote&gt;
-&lt;p&gt;公众号的用户，你可以点击文章底部「阅读原文」浏览器中阅读本文，以便在电脑端参考代码与链接。&lt;/p&gt;
+&lt;p&gt;通过本篇教程，你将完成对 Home Assistant 的初步配置，并接入你的第一个设备。&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;如同很多开源项目，Home Assistant 对新手十分不友好，它更像是 Geek 们的玩物，你需要去阅读大量的英文文档，在编辑器里编辑自己的配置文件、手动添加智能设备、自定义每一个细节，这巨大的工作量使人望而却步。而 Hass.io 就是在这样一个背景下推出，它拥有了全新的可视化安装配置界面，能够轻松的安装与升级（不要在意那些网络细节），更重要的是依托于 Docker 技术，Hass.io 提供了插件（Add-ons）功能，你能够非常方便的安装与管理一些之前需要在命令行环境下部署的功能。如果你随同上一篇文章安装好了自己的 Hass.io，那么今天，我们将一起让它真正工作起来。&lt;/p&gt;
@@ -29,11 +99,13 @@
     
     <item>
       <title>树莓派 &#43; Home Assistant &#43; HomeKit 从零开始打造个人智能家居系统（2）：准备与安装 Home Assistant</title>
-      <link>https://junlongzhao.github.io/post/15037439183451/</link>
+      <link>https://jun-long.github.io/post/15037439183451/</link>
       <pubDate>Thu, 24 Aug 2017 21:49:19 +0800</pubDate>
       
-      <guid>https://junlongzhao.github.io/post/15037439183451/</guid>
-      <description>&lt;h2 id=&#34;写在前面&#34;&gt;写在前面&lt;/h2&gt;
+      <guid>https://jun-long.github.io/post/15037439183451/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;通过本篇教程，你将完成 Home Assistant 的安装部署。&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;p&gt;如果你看完了之前的文章，决定开始尝试一下打造个人的智能家居系统。那么恭喜你，你不但能解决谁下床关灯，大门到底关没关好的历史难题，还能够充分发挥个人的想象力，解决更多的家居问题。&lt;/p&gt;
 
@@ -48,11 +120,15 @@
     
     <item>
       <title>树莓派 &#43; Home Assistant &#43; HomeKit 从零开始打造个人智能家居系统（1）：前言</title>
-      <link>https://junlongzhao.github.io/post/15037439183374/</link>
+      <link>https://jun-long.github.io/post/15037439183374/</link>
       <pubDate>Tue, 22 Aug 2017 21:49:19 +0800</pubDate>
       
-      <guid>https://junlongzhao.github.io/post/15037439183374/</guid>
-      <description>&lt;p&gt;随着科技巨头的入场，智能家居不但从比尔盖茨当年的预言中走入现实，而且在平台化的力量下，成为了消费者能够轻松入手的产品。亲自打造个人的智能家居系统已不是难事，本文将从零开始，更加系统地讲解打造个人智能家居的各个环节，以期哪怕是零基础的小白也能够轻松入门玩耍。
+      <guid>https://jun-long.github.io/post/15037439183374/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;通过本篇教程，你将对智能家居以及打造个人智能家居系统过程中要用到的各种概念、设备与技术有一个初步的印象。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;随着科技巨头的入场，智能家居不但从比尔盖茨当年的预言中走入现实，而且在平台化的力量下，成为了消费者能够轻松入手的产品。亲自打造个人的智能家居系统已不是难事，本文将从零开始，更加系统地讲解打造个人智能家居的各个环节，以期哪怕是零基础的小白也能够轻松入门玩耍。
 由于是零基础教程，在系列文章的首篇，我会先展示最终的使用效果，再用一定篇幅介绍市面上的智能家居平台，最后简单介绍搭建个人智能家居系统所用到的设备、软件、平台、系统结构，有基础的极客玩家可选择性阅读。&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>

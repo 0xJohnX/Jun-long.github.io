@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        
+        <meta name="twitter:card" content="summary_large_image"/>
+        <meta name="twitter:image" content="https://i.loli.net/2017/09/08/59b280926a140.jpg"/>
+    
+
+
+
+<meta name="twitter:title" content="树莓派 &#43; Home Assistant &#43; HomeKit 从零开始打造个人智能家居系统（7）：Floorplan for Home Assistant"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@"/>
+
+
+
+  	<meta property="og:title" content="树莓派 &#43; Home Assistant &#43; HomeKit 从零开始打造个人智能家居系统（7）：Floorplan for Home Assistant &middot; 智能改造家" />
+  	<meta property="og:site_name" content="智能改造家" />
+  	<meta property="og:url" content="https://jun-long.github.io/post/15039393417743/" />
+
+    
+       <meta property="og:image" content="https://i.loli.net/2017/09/08/59b280926a140.jpg"/>
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2017-09-05T01:49:19&#43;08:00" />
+
+    
+    
+
+    <title>树莓派 &#43; Home Assistant &#43; HomeKit 从零开始打造个人智能家居系统（7）：Floorplan for Home Assistant &middot; 智能改造家</title>
+
+    
+    <meta name="description" content="&lt;blockquote&gt;
+&lt;p&gt;通过本篇教程，你将获得 Home Assistant 的另一种交互方式：平面图（Floorplan），并跟随示例创建属于你独一无二的个人家庭控制界面。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;如果说 Home Assistant 复杂难搞，那么就在于它的配置过程实在没有什么用户体验可" />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="https://jun-long.github.io/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="https://jun-long.github.io/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="https://jun-long.github.io/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="https://jun-long.github.io/css/nav.css" />
+
+    
+
+    
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/default.min.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+        
+        <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+        <link href="http://feeds.feedburner.com/..." rel="alternate" type="application/rss+xml" title="智能改造家" />
+    
+    <meta name="generator" content="Hugo 0.26" />
+
+    <link rel="canonical" href="https://jun-long.github.io/post/15039393417743/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": ,
+        "logo": https://jun-long.github.io/images/logo.png
+    },
+    "author": {
+        "@type": "Person",
+        "name": ,
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": https://jun-long.github.io/images/logo.png,
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": https://jun-long.github.io,
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ],
+        "description": 智能改造家
+        
+    },
+    "headline": 树莓派 &#43; Home Assistant &#43; HomeKit 从零开始打造个人智能家居系统（7）：Floorplan for Home Assistant,
+    "name": 树莓派 &#43; Home Assistant &#43; HomeKit 从零开始打造个人智能家居系统（7）：Floorplan for Home Assistant,
+    "wordCount": 571,
+    "timeRequired": "PT3M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": en
+    },
+    "url": https://jun-long.github.io/post/15039393417743/,
+    "datePublished": 2017-09-05T01:49Z,
+    "dateModified": 2017-09-05T01:49Z,
+    
+    "image": {
+        "@type": "ImageObject",
+        "url": https://jun-long.github.io/https://i.loli.net/2017/09/08/59b280926a140.jpg,
+        "width": 3000,
+        "height": 1445
+    },
+    
+    
+    "description": ,
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": https://jun-long.github.io/post/15039393417743/
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="https://jun-long.github.io/">Home</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="https://jun-long.github.io/post/">Archives</a>
+            </li>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="http://feeds.feedburner.com/...">Subscribe</a> </div>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+  
+  <header class="main-header post-head" style="background-image: url(https://i.loli.net/2017/09/08/59b280926a140.jpg)">
+  
+  <nav class="main-nav overlay clearfix">
+
+
+  
+      <a class="blog-logo" href="https://jun-long.github.io/"><img src="https://jun-long.github.io/images/logo.png" alt="Home" /></a>
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">树莓派 &#43; Home Assistant &#43; HomeKit 从零开始打造个人智能家居系统（7）：Floorplan for Home Assistant</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2017-09-05T01:49:19&#43;08:00">
+            Sep 5, 2017
+          </time>
+        
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <blockquote>
+<p>通过本篇教程，你将获得 Home Assistant 的另一种交互方式：平面图（Floorplan），并跟随示例创建属于你独一无二的个人家庭控制界面。</p>
+</blockquote>
+
+<p>如果说 Home Assistant 复杂难搞，那么就在于它的配置过程实在没有什么用户体验可言，任何一个细节，从功能到展示、从设备到服务都需要你自己去安排；而如果说 Home Assistant 为何吸引人，那么也在于它的拥有无限的可能，你能够构建出只属于你的 Style。本系列前期的文章，主要为了引领大家入门，对 Home Assistant 的整个配置过程有一个了解，在此基础上，通过<a href="home-assistant.io">官网</a>、<a href="https://bbs.hassbian.com">论坛</a>的补充，慢慢打造你的个人智能家居系统。从本篇开始，我会试着分享一些更个性化的设置，一些额外的实验性的功能。</p>
+
+<p></p>
+
+<h2 id="一-效果展示">一、效果展示</h2>
+
+<p><a href="https://github.com/pkozul/ha-floorplan">Floorplan for Home Assistant</a> 使用系统的<a href="https://home-assistant.io/docs/frontend/">前端</a>功能，以一个更直观“家庭平面图”作为交互界面。在 Home Assistant 的 Web 页面控制的所有设备、服务、场景，都可以在平面图中显示并控制。</p>
+
+<p><img src="https://i.loli.net/2017/09/07/59b15e0515b06.gif" alt="Floorplan for Home Assistant" /></p>
+
+<p>▲Floorplan for Home Assistant 1</p>
+
+<p><img src="https://i.loli.net/2017/09/07/59b15e0436035.gif" alt="Floorplan for Home Assistant" /></p>
+
+<p>▲Floorplan for Home Assistant 2</p>
+
+<p><img src="https://i.loli.net/2017/09/07/59b15df6478f2.gif" alt="Floorplan for Home Assistant" /></p>
+
+<p>▲Floorplan for Home Assistant 3</p>
+
+<p><img src="https://i.loli.net/2017/09/07/59b1686598cd6.png" alt="Floorplan for Home Assistant" /></p>
+
+<p>▲Floorplan for Home Assistant 4</p>
+
+<h2 id="二-基础准备">二、基础准备</h2>
+
+<h3 id="实现原理">实现原理</h3>
+
+<p>Home Assistant 提供的<a href="https://home-assistant.io/docs/frontend/">前端</a>功能。由于 Home Assistant 本身使用 Web 页面控制，理论上你可以以任意的 Web 图形化形式展示并控制整个系统。而在<strong>平面图</strong>（Floorplan）中，通过使自定义的 <code>ha-floorplan.html</code> 页面文件配合SVG 格式图片 <code>floorplan.svg</code>，可以将图片中的可视化设备赋予系统设备的实例 ID（Entity ID），达到关联控制的目的。</p>
+
+<p>3D 的显示效果很棒，可是由于下面几个原因我最终仍选择了 2D 视图模式：</p>
+
+<ul>
+<li>角度固定导致设备显示问题。</li>
+<li>灯具的显示控制问题。</li>
+<li>SVG 实现形式的局限（不支持三维物体的描述，如效果展示2，大部分仍采用了菜单的形式来控制设备）。</li>
+</ul>
+
+<blockquote>
+<p><strong>SVG</strong>：<strong>可缩放矢量图形</strong>（Scalable Vector Graphics）是一种基于可扩展标记语言（<a href="https://zh.wikipedia.org/wiki/XML">XML</a>），用于描述二维<a href="https://zh.wikipedia.org/wiki/%E7%9F%A2%E9%87%8F%E5%9B%BE%E5%BD%A2">矢量图形</a>的图形格式。SVG由<a href="https://zh.wikipedia.org/wiki/W3C">W3C</a>制定，是一个<a href="https://zh.wikipedia.org/wiki/%E5%BC%80%E6%94%BE%E6%A0%87%E5%87%86">开放标准</a>。</p>
+</blockquote>
+
+<h3 id="使用工具">使用工具</h3>
+
+<p><strong>SVG 编辑软件</strong>：<a href="https://inkscape.org/en/develop/about-svg/">Inkscape</a>，免费、开源的矢量图形编辑器，提供了大量绘图和对象操作工具，不仅能导入导出SVG，还支持AI、EPS、PSD和PNG。</p>
+
+<p><img src="https://i.loli.net/2017/09/08/59b1847f81268.png" alt="Inkscape" /></p>
+
+<p>▲Inkscape</p>
+
+<h2 id="三-安装项目">三、安装项目</h2>
+
+<h3 id="复制文档">复制文档</h3>
+
+<p>在<a href="https://github.com/pkozul/ha-floorplan">项目文档</a>（或<a href="https://pan.baidu.com/s/1sl8ve01">百度网盘</a> 提取密码：rt2n）中下载最新的相关文件，复制到你的 <code>config</code> 目录下，结构如下：</p>
+
+<p><img src="https://i.loli.net/2017/09/08/59b175588201d.png" alt="目录结构" /></p>
+
+<p>▲目录结构</p>
+
+<blockquote>
+<p>主要需要修改的文件：</p>
+
+<ul>
+<li><code>floorplan.yaml</code>：设备配置文件</li>
+<li><code>floorplan.svg</code>：平面图图片文件</li>
+<li><code>floorplan.css</code>：显示效果样式文件</li>
+</ul>
+</blockquote>
+
+<h3 id="显示方式">显示方式</h3>
+
+<p>平面图（Floorplan）在 Home Assistant 中有两种显示方式：</p>
+
+<h4 id="侧边栏">侧边栏</h4>
+
+<p><img src="https://user-images.githubusercontent.com/2073827/27063110-08d3fd82-5033-11e7-85b6-671722608394.png" alt="侧边栏" /></p>
+
+<p>▲侧边栏</p>
+
+<p>在  <code>configuration.yaml</code> 添加如下配置：</p>
+
+<pre><code class="language-yaml">panel_custom:
+  - name: floorplan
+    sidebar_title: Floorplan
+    sidebar_icon: mdi:bulletin-board
+    url_path: floorplan
+    config: !include floorplan.yaml
+</code></pre>
+
+<h4 id="状态卡片">状态卡片</h4>
+
+<p><img src="https://user-images.githubusercontent.com/2073827/27063035-97aa2a6e-5032-11e7-8e8e-79935a19aebf.png" alt="状态卡片" /></p>
+
+<p>▲状态卡片</p>
+
+<p>在  <code>configuration.yaml</code> 添加如下配置：</p>
+
+<pre><code class="language-yaml"># 虚拟了一个实例来表示平面图，实例类型任意。
+homeassistant:
+  customize:    
+    binary_sensor.floorplan:
+      custom_ui_state_card: floorplan
+      config: !include floorplan.yaml
+binary_sensor:
+  - platform: mqtt
+    state_topic: dummy/floorplan/sensor
+    name: Floorplan
+group:
+  zones:
+    name: Zones
+    entities:
+      - binary_sensor.floorplan
+</code></pre>
+
+<p>以任意方式配置之后重启 Home Assistant 服务，在 Floorplan 面板中你应该能看见如下界面：</p>
+
+<p><img src="https://i.loli.net/2017/09/08/59b22a73ddaf9.png" alt="Floorplan 初始界面" /></p>
+
+<p>▲Floorplan 初始界面</p>
+
+<p>官方文档提供了默认的配置文件与 SVG 平面图文件，由于没有跟你的系统关联，无法进行任何操作，下面让我们先将你的设备加入  <code>floorplan.yaml</code> 文件中。</p>
+
+<h2 id="四-添加设备">四、添加设备</h2>
+
+<p>目前仅支持传感器（Sensor）、开关（Switch）、灯具（Light）、报警面板（Alarm Panel）、二进制传感器（Binary Sensors）、摄像头（Camera）、媒体播放器（Media Player），将你的设备的实例 ID（Entity ID） 添加到 <code>floorplan.yaml</code> 文件相应位置（仅以部分设备为例，详情参照下载文档）：</p>
+
+<pre><code class="language-yaml">      name: Demo Floorplan
+      image: /local/custom_ui/floorplan/floorplan.svg
+      stylesheet: /local/custom_ui/floorplan/floorplan.css
+      
+      # 可选项
+      warnings:                  # 开启错误提示，可以在Web页面查看
+      # pan_zoom:                  # 缩放
+      # hide_app_toolbar:          # 隐藏 Toolbar
+      # date_format: DD-MMM-YYYY   # 自定义日期格式
+      
+      last_motion_entity: sensor.template_last_motion # 最后动作设备
+      last_motion_class: last-motion
+
+      groups:
+
+        - name: Sensors #传感器 名称自定 可以有多组
+          entities:
+             -  sensor.dark_sky_temperature # 温度传感器 在此处添加你的设备 ID 
+          # 文字显示模板，在我的文档中定义了两类，分别带有温湿度单位的，可自行参考
+          text_template: '${entity.state ? Math.ceil(entity.state) : &quot;undefined&quot;}'  
+          # 显示模板 调用不同的 CSS 信息
+          class_template: '
+            var temp = parseFloat(entity.state.replace(&quot;°&quot;, &quot;&quot;));
+            if (temp &lt; 10)
+              return &quot;temp-low&quot;; # 在 CSS 文件中的 .temp-low 类下修改相关显示属性
+            else if (temp &lt; 30)
+              return &quot;temp-medium&quot;;
+            else
+              return &quot;temp-high&quot;;
+            '
+
+        - name: Lights
+          entities:
+             - light.hallway
+             - light.living_room
+             - light.patio
+             - group.kitchen_lights
+             - group.living_room_lights
+          states: # 状态 以及相应调用的 CSS 信息
+            - state: 'on'
+              class: 'light-on'
+            - state: 'off'
+              class: 'light-off'
+          action: #执行动作
+            domain: homeassistant   
+            service: toggle
+
+</code></pre>
+
+<p><img src="https://i.loli.net/2017/09/08/59b2467f38bde.png" alt="错误提示" /></p>
+
+<p>▲错误提示</p>
+
+<p>配置完成后，需要重启 Home Assistant 服务，如果你开启了配置文件中的 <code>warnings</code> 错误提示，刷新浏览器，你将会看到类似上图的信息，提示我们在 SVG 文件中没有找到相应的设备，下面我们将绘制属于你的平面图并将设备与图形关联起来。</p>
+
+<h2 id="五-平面图绘制">五、平面图绘制</h2>
+
+<p>平面图一般是在你的户型图基础上进行修改与添加相关设备显示，通过 <code>floorplan.svg</code> 文件展示出来。</p>
+
+<h3 id="获取你的户型图">获取你的户型图</h3>
+
+<p>如果你拥有自己的户型图源文件，你可以直接导入到 <a href="https://inkscape.org/en/develop/about-svg/">Inkscape</a> 中进行修改。如果你没有的话，推荐以下两种方式简单的获取你的户型图：</p>
+
+<blockquote>
+<p><a href="https://inkscape.org/en/develop/about-svg/">Inkscape</a> 支持 CAD 文件导入，但是会产生很多杂项，线条也是独立的，不方便后期修改，经过测试仍推荐重绘个人平面图。如果你不需要后期美化，可以在<a href="https://www.kujiale.com/">酷家乐</a>下载你的户型图 CAD 文件，并通过在线<a href="https://convertio.co/zh/dxf-svg/">DXF转SVG</a>直接获得的你的户型图 SVG 文件。</p>
+
+<p><img src="https://i.loli.net/2017/09/08/59b2305707b5e.png" alt="CAD 导入" /></p>
+</blockquote>
+
+<p><a href="https://www.kujiale.com/">酷家乐</a>：在线制作户型图。开始设计后直接搜索你的户型图，找到后直接导出最简户型。</p>
+
+<p><img src="https://i.loli.net/2017/09/08/59b2344386ce3.png" alt="新建户型" /></p>
+
+<p>▲新建户型</p>
+
+<p><img src="https://i.loli.net/2017/09/08/59b234437bcab.png" alt="导出户型" /></p>
+
+<p>▲导出户型</p>
+
+<p><a href="http://www.magic-plan.com/magicplan/">magicplan</a>：使用拍摄与增强现实功能创建个人户型图。如果线上没有你的户型图，你可以使用 magicplan 自行制作。需要<strong>注意</strong>的是 magicplan 导出功能需要收费，这里我们仅使用制成后的截图来供我们参考制作所需的平面图。</p>
+
+<p><img src="https://i.loli.net/2017/09/08/59b235f2596b3.gif" alt="magicplan" /></p>
+
+<p>▲magicplan</p>
+
+<h3 id="户型图-svg-文件的绘制">户型图 SVG 文件的绘制</h3>
+
+<p>为了后期进一步美化与定制，我们没有使用 CAD 源文件，这就需要我们手动修改户型图。将之前得到的户型图文件拖拽进 <a href="https://inkscape.org/en/develop/about-svg/">Inkscape</a> 进行临摹。</p>
+
+<p><img src="https://i.loli.net/2017/09/08/59b2396c4db75.png" alt="绘制户型图" /></p>
+
+<p>▲ 绘制户型图</p>
+
+<p>美化后的户型图完全符合 SVG 文件的要求，你可以试着再往里面添加你的家具家电。</p>
+
+<p><img src="https://i.loli.net/2017/09/08/59b23a5303ab6.png" alt="绘制户型图" /></p>
+
+<p>▲ 绘制户型图</p>
+
+<h3 id="设备的关联">设备的关联</h3>
+
+<p>之所以重绘户型图，一个原因是为了能够使你的平面图看起来更美观，另一个原因就是为了之后的设备关联。所有你想要在平面图中控制的设备，你都需要设置它在 SVG 文件中的属性，赋予相关图形你的实例 ID（Entity ID）。</p>
+
+<blockquote>
+<p>为了方便触控设备的操作，遵循人机交互的需求（Human Interface），我采用统一大小格式的图标来作为设备的控件。大多数相关图标可以在 <a href="https://www.flaticon.com/">FLATICON</a> 网站下载，文末的附件中也含有我用到的一些图标供大家参考。</p>
+
+<p><img src="https://i.loli.net/2017/09/08/59b24ab15ff22.png" alt="FLATICON" /></p>
+</blockquote>
+
+<p>以下仅以灯具控制以及温湿度信息显示为例：</p>
+
+<h4 id="关联灯具">关联灯具</h4>
+
+<p>在平面图中适合位置添加你选择的图标，调整到适合大小，设置对象属性。</p>
+
+<p><img src="https://i.loli.net/2017/09/08/59b24ccf5ccf4.png" alt="添加灯具" /></p>
+
+<p>▲添加灯具</p>
+
+<h4 id="关联温湿度信息">关联温湿度信息</h4>
+
+<p>在平面图中适合位置添加任意文字，调整到你希望显示的大小，设置对象属性。</p>
+
+<p><img src="https://i.loli.net/2017/09/08/59b24e679e3ee.png" alt="添加温湿度信息" /></p>
+
+<p>▲添加温湿度信息</p>
+
+<p>完成后保存 <code>floorplan.svg</code> 文件并替换原文件，刷新浏览器，查看效果，并注意错误提示。</p>
+
+<h2 id="六-个性化设置">六、个性化设置</h2>
+
+<p>经过前面几步，你已经可以在浏览器中使用平面图控制你的设备了，下面主要涉及 <code>floorplan.css</code> 文件的修改，也就是对设备开关状态显示效果、信息显示效果、门窗状态显示效果的自定义，示例如下：</p>
+
+<blockquote>
+<p>SVG 与 CSS 文件的修改不需要重启 Home Assistant 服务，保存后刷新浏览器即可。</p>
+</blockquote>
+
+<h3 id="信息文本样式">信息文本样式</h3>
+
+<p>如我们在 <code>floorplan.yaml</code> 文件中添加的温湿度传感器为例（本例包含多种样式的判断选择）：</p>
+
+<pre><code class="language-yaml"># 温度 由于温湿度的单位不同，将之分别定义显示模板 text_template
+- name: Sensors
+          entities:
+             - sensor.temperature_158d0001141e1a
+             - sensor.temperature_158d0001145a31
+          text_template: '${entity.state ? Math.ceil(entity.state) : &quot;undefined&quot;}${entity.attributes.unit_of_measurement}'
+          # 样式模板，温度在低于15、15-30、高于30，分别按照 temp-low temp-medium temp-high 的样式显示，在本例中分别显示 蓝色（寒冷）、绿色（舒适）、红色（炎热）
+          class_template: '
+            var temp = parseFloat(entity.state);
+            if (temp &lt; 15)
+              return &quot;temp-low&quot;;
+            else if (temp &lt; 30)
+              return &quot;temp-medium&quot;;
+            else
+              return &quot;temp-high&quot;;
+            '
+# 湿度
+        - name: Sensors
+          entities:
+             - sensor.humidity_158d0001141e1a
+             - sensor.humidity_158d0001145a31
+          text_template: '${entity.state ? Math.ceil(entity.state) : &quot;undefined&quot;}${entity.attributes.unit_of_measurement}'
+          # 样式模板，湿度在低于45、45-65、高于65，分别按照 humidity-low humidity-medium humidity-high 的样式显示，在本例中分别显示 黄色（干燥）、绿色（舒适）、蓝色（潮湿）
+          class_template: '
+            var humidity = parseFloat(entity.state);
+            if (humidity &lt; 45)
+              return &quot;humidity-low&quot;;
+            else if (humidity &lt; 65)
+              return &quot;humidity-medium&quot;;
+            else
+              return &quot;humidity-high&quot;;
+            '
+</code></pre>
+
+<p>在 <code>floorplan.css</code> 文件中对应如下：</p>
+
+<pre><code class="language-css">/*CSS样式表，修改类似#5bc0de的信息，即改变相应状态显示颜色*/
+.temp-low {
+  fill: #5bc0de !important;
+}
+.temp-medium {
+  fill: #5cb85c !important;
+}
+.temp-high {
+  fill: #d9534f !important;
+}
+.humidity-low {
+  fill: #f0ad4e !important;
+}
+.humidity-medium {
+  fill: #5cb85c !important;
+}
+.humidity-high {
+  fill: #5bc0de !important;
+}
+</code></pre>
+
+<blockquote>
+<p>Adobe <a href="https://color.adobe.com/zh">在线取色器</a></p>
+</blockquote>
+
+<h3 id="图标控件样式">图标控件样式</h3>
+
+<p>如我们在 <code>floorplan.yaml</code> 文件中添加的灯具为例。通常会有开和关两个状态，对应两个样式。</p>
+
+<pre><code class="language-yaml">states:
+  - state: 'on'
+ 	class: 'light-on'
+  - state: 'off'
+    class: 'light-off'
+</code></pre>
+
+<p>在 <code>floorplan.css</code> 文件中对应如下：</p>
+
+<pre><code class="language-css">.light-off {
+  opacity: 0.75; /*关闭时不透明度为75%*/
+}
+
+.light-on { /*开启时正常显示*/
+}
+</code></pre>
+
+<p>效果如下：</p>
+
+<p><img src="https://i.loli.net/2017/09/08/59b259ed7820e.png" alt="图标控件样式" /></p>
+
+<p>▲图标控件样式</p>
+
+<p>给一组样式对比， <code>floorplan.css</code> 文件：</p>
+
+<pre><code class="language-css">.light-off {
+  stroke: white; !important;
+  fill: #C3B7F4 !important;
+}
+
+.light-on {
+  stroke: white; !important;
+  fill: #F8D2B9 !important;
+}
+
+</code></pre>
+
+<p>效果如下：</p>
+
+<p><img src="https://i.loli.net/2017/09/08/59b25b2c1f5a5.png" alt="图标控件样式" /></p>
+
+<p>▲图标控件样式</p>
+
+<p>同理我们可以设置门窗、人体感应器不同状态下的颜色、显示，这里就不一一说明了。</p>
+
+<blockquote>
+<p>目前大多数浏览器支持的 CSS 效果还有很多，如果你对相关知识有一定了解，你还可以设置动态显示效果，比如风扇开时显示动态图标，关闭时显示静态图标。</p>
+</blockquote>
+
+<h2 id="七-相关文档下载">七、相关文档下载</h2>
+
+<p>文中用到的配置文件、图标、SVG、CSS文档在<a href="https://pan.baidu.com/s/1sl8ve01">百度网盘</a>（提取密码：rt2n）提供下载，以便大家参考。</p>
+
+<p>感谢大家的热情支持，由于近一周事情比较多，断断续续才完成了这篇文章，有些评论也无法即时回复，十分抱歉。</p>
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+
+
+
+
+
+
+
+
+<figure class="author-image">
+    <a class="img" href="https://jun-long.github.io/" style="background-image: url(/images/logo.png)"><span class="hidden">Junlong's Picture</span></a>
+</figure>
+
+
+<section class="author">
+  <h4><a href="https://jun-long.github.io/">Junlong</a></h4>
+  
+  <p>智能改造家</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">Hubei, China</span>
+    <span class="author-link icon-link"><a href="https://jun-long.github.io">https://jun-long.github.io</a></span>
+  </div>
+</section>
+
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=%e6%a0%91%e8%8e%93%e6%b4%be%20%2b%20Home%20Assistant%20%2b%20HomeKit%20%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%e6%89%93%e9%80%a0%e4%b8%aa%e4%ba%ba%e6%99%ba%e8%83%bd%e5%ae%b6%e5%b1%85%e7%b3%bb%e7%bb%9f%ef%bc%887%ef%bc%89%ef%bc%9aFloorplan%20for%20Home%20Assistant&nbsp;-&nbsp;%e6%99%ba%e8%83%bd%e6%94%b9%e9%80%a0%e5%ae%b6&amp;url=https%3a%2f%2fjun-long.github.io%2fpost%2f15039393417743%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fjun-long.github.io%2fpost%2f15039393417743%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=https%3a%2f%2fjun-long.github.io%2fpost%2f15039393417743%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+
+
+
+
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+  
+      <a class="read-next-story prev" style="background-image: url(https://i.loli.net/2017/09/02/59a99384b2452.jpg)" href="https://jun-long.github.io/post/15039393082613/">
+          <section class="post">
+              <h2>树莓派 &#43; Home Assistant &#43; HomeKit 从零开始打造个人智能家居系统（6）：自动化</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">智能改造家</a> &copy; 2017</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="https://jun-long.github.io/js/jquery.js"></script>
+    <script type="text/javascript" src="https://jun-long.github.io/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="https://jun-long.github.io/js/index.js"></script>
+    
+</body>
+</html>
+

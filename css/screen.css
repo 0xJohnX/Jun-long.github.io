@@ -34,7 +34,7 @@ audio, canvas, video { display: inline-block; }
 audio:not([controls]) { display: none; height: 0; }
 [hidden], template { display: none; }
 html {
-   font-family: sans-serif;
+   font-family: Microsoft YaHei,sans-serif;
    -ms-text-size-adjust: 100%;
    -webkit-text-size-adjust: 100%;
 }
@@ -375,7 +375,6 @@ blockquote {
 
 blockquote p {
     margin: 0.8em 0;
-    font-style: italic;
 }
 
 blockquote small {
@@ -2129,6 +2128,7 @@ body:not(.post-template) .post-title {
   }
 }
 
+/*code*/
 
 /* ==========================================================================
    End of file. Animations should be the last thing here. Do not add stuff

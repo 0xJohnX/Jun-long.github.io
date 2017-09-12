@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        
+        <meta name="twitter:card" content="summary_large_image"/>
+        <meta name="twitter:image" content="https://i.loli.net/2017/09/02/59a99384b2452.jpg"/>
+    
+
+
+
+<meta name="twitter:title" content="树莓派 &#43; Home Assistant &#43; HomeKit 从零开始打造个人智能家居系统（6）：自动化"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@"/>
+
+
+
+  	<meta property="og:title" content="树莓派 &#43; Home Assistant &#43; HomeKit 从零开始打造个人智能家居系统（6）：自动化 &middot; 智能改造家" />
+  	<meta property="og:site_name" content="智能改造家" />
+  	<meta property="og:url" content="https://jun-long.github.io/post/15039393082613/" />
+
+    
+       <meta property="og:image" content="https://i.loli.net/2017/09/02/59a99384b2452.jpg"/>
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2017-09-01T01:49:19&#43;08:00" />
+
+    
+    
+
+    <title>树莓派 &#43; Home Assistant &#43; HomeKit 从零开始打造个人智能家居系统（6）：自动化 &middot; 智能改造家</title>
+
+    
+    <meta name="description" content="&lt;blockquote&gt;
+&lt;p&gt;通过本篇教程，你将了解 Home Assistant 自动化概念，以及自动化的组成，并通过一些例子学习如何编写自己的自动化配置。（ &lt;a href=&#34;https://home-assistant.io/docs/automation/&#34;&gt;官方文档&lt;/a&gt;与&lt;a href=&#34;https:/" />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="https://jun-long.github.io/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="https://jun-long.github.io/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="https://jun-long.github.io/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="https://jun-long.github.io/css/nav.css" />
+
+    
+
+    
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/default.min.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+        
+        <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+        <link href="http://feeds.feedburner.com/..." rel="alternate" type="application/rss+xml" title="智能改造家" />
+    
+    <meta name="generator" content="Hugo 0.26" />
+
+    <link rel="canonical" href="https://jun-long.github.io/post/15039393082613/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": ,
+        "logo": https://jun-long.github.io/images/logo.png
+    },
+    "author": {
+        "@type": "Person",
+        "name": ,
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": https://jun-long.github.io/images/logo.png,
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": https://jun-long.github.io,
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ],
+        "description": 智能改造家
+        
+    },
+    "headline": 树莓派 &#43; Home Assistant &#43; HomeKit 从零开始打造个人智能家居系统（6）：自动化,
+    "name": 树莓派 &#43; Home Assistant &#43; HomeKit 从零开始打造个人智能家居系统（6）：自动化,
+    "wordCount": 652,
+    "timeRequired": "PT4M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": en
+    },
+    "url": https://jun-long.github.io/post/15039393082613/,
+    "datePublished": 2017-09-01T01:49Z,
+    "dateModified": 2017-09-01T01:49Z,
+    
+    "image": {
+        "@type": "ImageObject",
+        "url": https://jun-long.github.io/https://i.loli.net/2017/09/02/59a99384b2452.jpg,
+        "width": 3000,
+        "height": 1445
+    },
+    
+    
+    "description": ,
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": https://jun-long.github.io/post/15039393082613/
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="https://jun-long.github.io/">Home</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="https://jun-long.github.io/post/">Archives</a>
+            </li>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="http://feeds.feedburner.com/...">Subscribe</a> </div>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+  
+  <header class="main-header post-head" style="background-image: url(https://i.loli.net/2017/09/02/59a99384b2452.jpg)">
+  
+  <nav class="main-nav overlay clearfix">
+
+
+  
+      <a class="blog-logo" href="https://jun-long.github.io/"><img src="https://jun-long.github.io/images/logo.png" alt="Home" /></a>
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">树莓派 &#43; Home Assistant &#43; HomeKit 从零开始打造个人智能家居系统（6）：自动化</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2017-09-01T01:49:19&#43;08:00">
+            Sep 1, 2017
+          </time>
+        
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <blockquote>
+<p>通过本篇教程，你将了解 Home Assistant 自动化概念，以及自动化的组成，并通过一些例子学习如何编写自己的自动化配置。（ <a href="https://home-assistant.io/docs/automation/">官方文档</a>与<a href="https://home-assistant.io/cookbook/">官方示例</a> ）</p>
+</blockquote>
+
+<p>智能家居为人诟病的一点往往是它不够“智能”，而国内的厂家又爱拿“智能”、“云”、“物联网+”之类高大上的词语做噱头，当你将这些设备买回家后，你发现它没有想象中的那么好用，难免就会失望。目前的智能家居系统，与其强调“智能”（Smart），我认为不如 Home Assistant 中的描述的“自动化”（Automation）来的贴切，事实上，在 HomeKit 以及 米家 App 中的都是以“自动化”来命名它们的。</p>
+
+<p>正是“自动化”的加入，使得 Home Assistant 不再呆板，在特定情况下，你甚至可以不再使用那些操作界面，让一切自动运转，真正的“智能”起来。以我自己举例，家中除了我，没人捣鼓这些东西，都是靠“自动化”设置，实现灯光、新风、监控、警戒、夜间空调等的日常使用。</p>
+
+<p></p>
+
+<h2 id="一-自动化基础">一、自动化基础</h2>
+
+<h3 id="homekit-新建自动化">HomeKit 新建自动化</h3>
+
+<p>为了让大家对相关概念有一个更直观的认识，我先以 HomeKit 为例做一个展示。</p>
+
+<p><img src="https://i.loli.net/2017/09/01/59a96f57808a2.jpg" alt="HomeKit 新建自动化" /></p>
+
+<p>▲HomeKit 新建自动化</p>
+
+<p><img src="https://i.loli.net/2017/09/01/59a96f579209a.jpg" alt="HomeKit 新建自动化" /></p>
+
+<p>▲HomeKit 新建自动化</p>
+
+<p>如图所示我新建了“星期日落日后就打开餐厅的落地灯”这样一个自动化（仅作示例），可见 iOS 的家庭 App 新建自动化非常直观。</p>
+
+<p><img src="https://i.loli.net/2017/09/01/59a96f5796750.jpg" alt="HomeKit 自动化" /></p>
+
+<p>▲HomeKit 自动化</p>
+
+<p>在这个自动化中，我们的<strong>触发</strong>条件是一个时间，即“落日”并且<strong>限制</strong>在“星期日”，当到达这一时间点时，系统自动<strong>执行</strong>“打开餐厅落地灯”这一动作。这样一个最简单的自动化，由三个不同的部分组成：<strong>触发（Trigger）</strong>、<strong>条件（Condition）</strong>、<strong>动作（Action）</strong>。</p>
+
+<blockquote>
+<p>这里我们也可以看到一般为了简化操作与保证设置的可行性，如 HomeKit、米家、阿里智能，都仅提供了较少的触发条件与可执行项，这大大限制了我们发挥的余地。</p>
+</blockquote>
+
+<h3 id="自动化组成">自动化组成</h3>
+
+<p><strong>触发</strong>：即触发自动化规则，比如到达特定的时间点、到达某一地点、天气变化、系统变化。</p>
+
+<p><strong>条件</strong>：<strong>条件是可选的</strong>，可以将自动化规则限制为仅在特定情况下执行。如一周之中我们只在周日让这个自动化起作用。</p>
+
+<p><strong>动作</strong>：当规则被触发并满足所有条件，将被执行，如开灯、调节温度、激活场景。</p>
+
+<p>以官方一个简单的 Home Assistant 自动化配置为例，格式如下：</p>
+
+<pre><code class="language-yaml">automation:
+  - alias: 'Rainy Day' #自动化名称
+    trigger: #触发
+      - platform: state
+        entity_id: sensor.precip_intensity
+        to: 'rain'
+    condition: #条件
+      - condition: state
+        entity_id: group.all_devices
+        state: 'home'
+      - condition: time
+        after: '14:00'
+        before: '23:00'
+    action: #动作
+      service: light.turn_on
+      entity_id: light.couch_lamp
+</code></pre>
+
+<p>对应流程如下：</p>
+
+<p><img src="https://i.loli.net/2017/09/02/59aa7389c2d69.png" alt="自动化流程" /></p>
+
+<p>▲自动化流程</p>
+
+<p>这个自动化表示，在下雨天，下午到晚上有人在家的话，就打开灯。</p>
+
+<blockquote>
+<p>自动化配置在 <code>configuration.yaml</code> 中，<code>automation:</code> 字段下，也可以使用 <code>automation: !include automations.yaml</code> 将所有自动化信息独立出来。</p>
+</blockquote>
+
+<h3 id="系统内部参数">系统内部参数</h3>
+
+<p>在上篇 Home Assistant 的进阶设置中我们讲到过，Home Assistant 的每一个一个设备或服务，都是通过自身唯一的<strong>实例 ID</strong>（Entity ID）被系统调用的，而在自动化配置中，我们设置触发、条件、动作的对象，也是如此。</p>
+
+<p><img src="https://i.loli.net/2017/08/31/59a6ef2747aaa.png" alt="获取设备 ID" /></p>
+
+<p>▲获取设备 ID</p>
+
+<p>在上图所示界面，我们可以获得一个设备或服务的ID（Entity ID）、状态（State）及附加属性（Attributes）。</p>
+
+<p>▼设备参数</p>
+
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+<th>示例</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Entity ID</td>
+<td>实例的唯一标识符。</td>
+<td>light.couch_lamp</td>
+</tr>
+
+<tr>
+<td>State</td>
+<td>设备的当前状态</td>
+<td>on、off</td>
+</tr>
+
+<tr>
+<td>Attributes</td>
+<td>设备的的</td>
+<td>brightness</td>
+</tr>
+</tbody>
+</table>
+
+<p>这些实例<strong>状态</strong>的<strong>变化</strong>，被用作<strong>触发</strong>源，而其<strong>实时状态</strong>用作判断能否<strong>执行</strong>的<strong>条件</strong>。</p>
+
+<blockquote>
+<p>在 Home Assistant 中，所有设备或服务，包括灯、开关、人，甚至太阳等等，都被视为一个实例（Entity）。</p>
+</blockquote>
+
+<p>所有的<strong>动作</strong>（Action）都被称作<strong>服务</strong>（Services），所有可执行的服务都可以在下图开发者工具（Developer Tools）中找到，包括自定义的设备与服务。比如上例中的 <code>light.turn_on</code> 能够打开系统中的任何灯，只需要添加类似 <code>entity_id: light.couch_lamp</code> 的指定参数即可。</p>
+
+<p><img src="https://ooo.0o0.ooo/2017/09/02/59aab8334aef9.png" alt="Services 工具" /></p>
+
+<p>▲Services 工具</p>
+
+<h2 id="二-自动化编辑器">二、自动化编辑器</h2>
+
+<p>0.45 版本之后，Home Assistant 还提供了一个自动化编辑器，在侧边栏找到 <code>Configuration &gt; Automations</code>。</p>
+
+<p><img src="https://i.loli.net/2017/09/02/59aa762fd4b25.png" alt="自动化编辑器" /></p>
+
+<p>▲自动化编辑器</p>
+
+<p>继续以上个自动化为例，用图像界面编辑器添加，如下图所示：</p>
+
+<p><img src="https://i.loli.net/2017/09/02/59aa7b5fa2359.png" alt="自动化“Rainy Day”" /></p>
+
+<p>▲自动化“Rainy Day”</p>
+
+<p>自动化编辑器能够使得相关配置工作简化，它提供了触发、条件和动作的类别选择，但是你还需要在开发者工具（Developer Tools）中找到你需要的实例 ID（Entity ID）、状态（State）和服务（Service）的详细信息并手动填入编辑器。</p>
+
+<blockquote>
+<p>注意：自动化编辑器 Data 参数采用 JSON 格式，与配置文件 YAML 语法有所不同，请按开发者工具（Developer Tools）中的示例编写。</p>
+
+<p>因为自动化编辑器需要调用 <code>automations.yaml</code> 文件，需要采用 <code>automation: !include automations.yaml</code> 将自动化信息独立出来。</p>
+</blockquote>
+
+<h2 id="三-自动化详解">三、自动化详解</h2>
+
+<h3 id="触发-trigger">触发（Trigger）</h3>
+
+<p>触发是启动自动化的规则，可以为同一规则设置多个触发器。一旦触发，Home Assistant 将验证相关<strong>条件</strong>，并执行<strong>动作</strong>。</p>
+
+<h4 id="事件触发">事件触发</h4>
+
+<pre><code class="language-yaml">automation:
+  trigger:
+    platform: event
+    event_type: MY_CUSTOM_EVENT
+    # 可选
+    event_data:
+      mood: happy
+</code></pre>
+
+<h4 id="home-assistant-触发">Home Assistant 触发</h4>
+
+<p>由 Home Assistant 的启动或停止来触发。</p>
+
+<pre><code class="language-yaml">automation:
+  trigger:
+    platform: homeassistant
+    event: start #或者是 'shutdown'
+</code></pre>
+
+<h4 id="mqtt触发">MQTT触发</h4>
+
+<p>收到来自 topic 的消息后触发。</p>
+
+<pre><code class="language-yaml">automation:
+  trigger:
+    platform: mqtt
+    topic: living_room/switch/ac
+    payload: 'on' # 可选项
+</code></pre>
+
+<h4 id="数值触发">数值触发</h4>
+
+<p>设备的状态达到预设范围时触发，如温度低于xx度。</p>
+
+<pre><code class="language-yaml">automation:
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.temperature
+    value_template: '{{ state.attributes.battery }}' # 可选 定义数据格式
+    # above below 至少有一个
+    above: 17
+    below: 25
+</code></pre>
+
+<h4 id="状态触发">状态触发</h4>
+
+<p>设备的状态变化来触发。</p>
+
+<pre><code class="language-yaml">automation:
+  trigger:
+    platform: state
+    entity_id: device_tracker.paulus, device_tracker.anne_therese
+    # from to 可选一个或全部
+    from: 'not_home'
+    to: 'home'
+    # 可选项 状态为1:10:05时触发
+    for:
+      hours: 1
+      minutes: 10
+      seconds: 5
+</code></pre>
+
+<h4 id="日升日落触发">日升日落触发</h4>
+
+<p>顾名思义，日升或日落时触发，可设置提前或推迟时间。</p>
+
+<pre><code class="language-yaml">automation:
+  trigger:
+    platform: sun
+    event: sunset # sunset或sunrise
+    offset: '-00:45:00'  # 可选项，此例为日落前 45 分钟触发
+</code></pre>
+
+<h4 id="模板触发">模板触发</h4>
+
+<p><a href="https://home-assistant.io/docs/configuration/templating/">模板</a>值为 True 时触发。</p>
+
+<pre><code class="language-yaml">automation:
+  trigger:
+    platform: template
+    value_template: &quot;{% if is_state('device_tracker.paulus', 'home') %}true{% endif %}&quot;
+</code></pre>
+
+<h4 id="时间触发">时间触发</h4>
+
+<p>在某时刻触发。</p>
+
+<pre><code class="language-yaml">automation:
+  trigger:
+    platform: time
+    # 每小时的第5分钟触发
+    minutes: 5
+    seconds: 00
+
+automation 2:
+  trigger:
+    platform: time
+    # 15:32:00 触发
+    at: '15:32:00'
+
+automation 3:
+  trigger:
+    platform: time
+    # 每 5分钟 触发一次
+    minutes: '/5'
+    seconds: 00
+</code></pre>
+
+<h4 id="区域触发">区域触发</h4>
+
+<p>到达或离开某地时触发，目前仅支持 <a href="https://home-assistant.io/components/device_tracker.owntracks/">OwnTracks 平台</a>以及 <a href="https://home-assistant.io/components/device_tracker.icloud/">iCloud 平台</a>。</p>
+
+<pre><code class="language-yaml">automation:
+  trigger:
+    platform: zone
+    entity_id: device_tracker.paulus # 此设备到达 home 时触发
+    zone: zone.home
+    # 到达或离开时触发
+    event: enter  # or &quot;leave&quot;
+</code></pre>
+
+<h4 id="多个触发">多个触发</h4>
+
+<p>触发其中一个，自动化就会被被执行。</p>
+
+<pre><code class="language-yaml">automation:
+  trigger:
+      # 第一个
+    - platform: time
+      minutes: 5
+      seconds: 00
+      # 第二个
+    - platform: sun
+      event: sunset
+</code></pre>
+
+<h3 id="条件-condition">条件（Condition）</h3>
+
+<p>条件是自动化规则的可选部分，用来限制触发后的执行，防止误操作。</p>
+
+<h4 id="逻辑关系">逻辑关系</h4>
+
+<h5 id="与-and">与（AND）</h5>
+
+<p>同时满足所有条件才执行。</p>
+
+<pre><code class="language-yaml">condition:
+  condition: and
+  conditions:
+    - condition: state
+      entity_id: 'device_tracker.paulus'
+      state: 'home'
+    - condition: numeric_state
+      entity_id: 'sensor.temperature'
+      below: '20'
+</code></pre>
+
+<h5 id="或-or">或（OR）</h5>
+
+<p>只要满足一个条件就执行。</p>
+
+<pre><code class="language-yaml">condition:
+  condition: or
+  conditions:
+    - condition: state
+      entity_id: 'device_tracker.paulus'
+      state: 'home'
+    - condition: numeric_state
+      entity_id: 'sensor.temperature'
+      below: '20'
+</code></pre>
+
+<h5 id="混合-and-和-or">混合 AND 和 OR</h5>
+
+<p>示例：下雨或者温度低于20℃，同时有人在家时执行。</p>
+
+<pre><code class="language-yaml">condition:
+  condition: and
+  conditions:
+    - condition: state
+      entity_id: 'device_tracker.paulus'
+      state: 'home'
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: sensor.weather_precip
+          state: 'rain'
+        - condition: numeric_state
+          entity_id: 'sensor.temperature'
+          below: '20'
+</code></pre>
+
+<h4 id="条件类型">条件类型</h4>
+
+<h5 id="数值条件">数值条件</h5>
+
+<pre><code class="language-yaml">condition:
+  condition: numeric_state
+  entity_id: sensor.temperature
+  above: 17
+  below: 25
+  # 可选
+  value_template: {{ float(state.state) + 2 }}
+</code></pre>
+
+<h5 id="状态条件">状态条件</h5>
+
+<pre><code class="language-yaml">condition:
+  condition: state
+  entity_id: device_tracker.paulus
+  state: not_home
+  # 可选
+  for:
+    hours: 1
+    minutes: 10
+    seconds: 5
+</code></pre>
+
+<h5 id="日升日落条件">日升日落条件</h5>
+
+<pre><code class="language-yaml">condition:
+  condition: sun
+  after: sunset
+  # 可选
+  after_offset: &quot;-1:00:00&quot;
+</code></pre>
+
+<h5 id="模板条件">模板条件</h5>
+
+<pre><code class="language-yaml">condition:
+  condition: template
+  value_template: '{{ states.device_tracker.iphone.attributes.battery &gt; 50 }}'
+</code></pre>
+
+<h5 id="时间条件">时间条件</h5>
+
+<pre><code class="language-yaml">condition:
+  condition: time
+  # 需要以下至少一项
+  after: '15:00:00'
+  before: '02:00:00'
+  weekday:
+    - mon
+    - wed
+    - fri
+</code></pre>
+
+<h5 id="区域条件">区域条件</h5>
+
+<pre><code class="language-yaml">condition:
+  condition: zone
+  entity_id: device_tracker.paulus
+  zone: zone.home
+</code></pre>
+
+<h4 id="示例">示例</h4>
+
+<pre><code class="language-yaml">  condition:
+      - condition: numeric_state
+        entity_id: sun.sun
+        value_template: ''
+        below: 1
+      - condition: state
+        entity_id: light.living_room
+        state: 'off'
+      - condition: time
+        before: '23:00:00'
+        after: '14:00:00'
+      - condition: state
+        entity_id: script.light_turned_off_5min
+        state: 'off'
+</code></pre>
+
+<h3 id="动作-action">动作（Action）</h3>
+
+<p>动作通过服务或事件与其他内容进行交互。在服务中需要指定实例 ID（entity_id）和可选的参数（data）。</p>
+
+<pre><code class="language-yaml">automation:
+  # 日落后将厨房与客厅的灯打开，并调到 亮度150，红色。
+  trigger:
+    platform: sun
+    event: sunset
+  action:
+    service: light.turn_on
+    entity_id:
+      - light.kitchen
+      - light.living_room
+    data:
+      brightness: 150
+      rgb_color: [255, 0, 0]
+
+automation 2:
+  # 推送消息
+  trigger:
+    platform: sun
+    event: sunset
+    offset: -00:30
+  action:
+    # 可以有多个service
+    - service: notify.notify
+      data:
+        message: Beautiful sunset!
+    - delay: 0:35
+    - service: notify.notify
+      data:
+        message: Oh wow you really missed something great.
+</code></pre>
+
+<h2 id="四-后期预告">四、后期预告</h2>
+
+<p>说实话，没有想到大家有如此高的热情，毕竟除开一些演示图片，技术文当真是枯燥又无趣，而自动化这一篇更是其中的巅峰，还好到这里整个系列文章算是告一段落。</p>
+
+<p>每个人的情况不同、设备不同，由于篇幅有限，基础篇章中我没有非常具体的讲一些设备和组件，当然我也不可能做到面面俱到，但是我希望通过之前的文章能够引领大家入门，能够让大家少走些弯路。除了<a href="https://home-assistant.io/docs/">官方文档</a>、<a href="https://community.home-assistant.io/">官方论坛</a>，大家还可以到中文论坛<a href="https://bbs.hassbian.com">瀚思彼岸</a>进行 Home Assistant 相关讨论，其中有很多具体的设备接入与插件配置。</p>
+
+<p>这个系列不会结束，但是应该不会如此密集地发文了，后期或许会做一两期个性化的内容，比如 <a href="https://github.com/pkozul/ha-floorplan">Floorplan</a> 或是  <a href="https://home-assistant.io/docs/ecosystem/hadashboard/">HADashboard</a>，有机会再做智能音箱接入的内容。同时希望能与大家分享更多关于智能家居的内容，用心打造我们每一个人自己的智能家居与生活。</p>
+
+<p>效果展示：</p>
+
+<p><img src="https://i.loli.net/2017/09/03/59abf8f773562.jpg" alt="Floorplan" /></p>
+
+<p>▲Floorplan</p>
+
+<p><img src="https://i.loli.net/2017/09/03/59abf906241ee.jpg" alt="Floorplan" /></p>
+
+<p>▲Floorplan</p>
+
+<p><img src="https://i.loli.net/2017/09/03/59abf905658ce.jpg" alt="HomeKit" /></p>
+
+<p>▲HomeKit</p>
+
+<p><img src="https://i.loli.net/2017/09/01/59a98365bfa2d.jpg" alt="Floorplan" /></p>
+
+<p>▲Floorplan via <a href="http://www.vmwareinfo.com/2017/07/visualizing-smart-home-using-home.html">Carlo</a></p>
+
+<p><img src="https://i.loli.net/2017/09/01/59a98365bdc21.jpg" alt="Floorplan" /></p>
+
+<p>▲Floorplan via <a href="http://www.vmwareinfo.com/2017/07/visualizing-smart-home-using-home.html">Carlo</a></p>
+
+<p>PS：这种嵌入插座哪里能买得到……</p>
+
+<p>当然，你也可以采用这样的形式：</p>
+
+<p><img src="https://i.loli.net/2017/09/03/59ac03746c0d1.jpg" alt="3D Floorplan" /></p>
+
+<p>▲3D Floorplan</p>
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+
+
+
+
+
+
+
+
+<figure class="author-image">
+    <a class="img" href="https://jun-long.github.io/" style="background-image: url(/images/logo.png)"><span class="hidden">Junlong's Picture</span></a>
+</figure>
+
+
+<section class="author">
+  <h4><a href="https://jun-long.github.io/">Junlong</a></h4>
+  
+  <p>智能改造家</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">Hubei, China</span>
+    <span class="author-link icon-link"><a href="https://jun-long.github.io">https://jun-long.github.io</a></span>
+  </div>
+</section>
+
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=%e6%a0%91%e8%8e%93%e6%b4%be%20%2b%20Home%20Assistant%20%2b%20HomeKit%20%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%e6%89%93%e9%80%a0%e4%b8%aa%e4%ba%ba%e6%99%ba%e8%83%bd%e5%ae%b6%e5%b1%85%e7%b3%bb%e7%bb%9f%ef%bc%886%ef%bc%89%ef%bc%9a%e8%87%aa%e5%8a%a8%e5%8c%96&nbsp;-&nbsp;%e6%99%ba%e8%83%bd%e6%94%b9%e9%80%a0%e5%ae%b6&amp;url=https%3a%2f%2fjun-long.github.io%2fpost%2f15039393082613%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fjun-long.github.io%2fpost%2f15039393082613%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=https%3a%2f%2fjun-long.github.io%2fpost%2f15039393082613%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+
+
+
+
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+      <a class="read-next-story" style="background-image: url(https://i.loli.net/2017/09/08/59b280926a140.jpg)" href="https://jun-long.github.io/post/15039393417743/">
+          <section class="post">
+              <h2>树莓派 &#43; Home Assistant &#43; HomeKit 从零开始打造个人智能家居系统（7）：Floorplan for Home Assistant</h2>
+              
+          </section>
+      </a>
+  
+  
+      <a class="read-next-story prev" style="background-image: url(https://ooo.0o0.ooo/2017/08/29/59a56b9e207d9.jpg)" href="https://jun-long.github.io/post/15039392986790/">
+          <section class="post">
+              <h2>树莓派 &#43; Home Assistant &#43; HomeKit 从零开始打造个人智能家居系统（5）：进阶配置 Home Assistant</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">智能改造家</a> &copy; 2017</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="https://jun-long.github.io/js/jquery.js"></script>
+    <script type="text/javascript" src="https://jun-long.github.io/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="https://jun-long.github.io/js/index.js"></script>
+    
+</body>
+</html>
+

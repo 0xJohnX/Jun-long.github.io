@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        
+        <meta name="twitter:card" content="summary_large_image"/>
+        <meta name="twitter:image" content="https://ooo.0o0.ooo/2017/08/29/59a56b9e207d9.jpg"/>
+    
+
+
+
+<meta name="twitter:title" content="树莓派 &#43; Home Assistant &#43; HomeKit 从零开始打造个人智能家居系统（5）：进阶配置 Home Assistant"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@"/>
+
+
+
+  	<meta property="og:title" content="树莓派 &#43; Home Assistant &#43; HomeKit 从零开始打造个人智能家居系统（5）：进阶配置 Home Assistant &middot; 智能改造家" />
+  	<meta property="og:site_name" content="智能改造家" />
+  	<meta property="og:url" content="https://jun-long.github.io/post/15039392986790/" />
+
+    
+       <meta property="og:image" content="https://ooo.0o0.ooo/2017/08/29/59a56b9e207d9.jpg"/>
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2017-08-29T21:49:19&#43;08:00" />
+
+    
+    
+
+    <title>树莓派 &#43; Home Assistant &#43; HomeKit 从零开始打造个人智能家居系统（5）：进阶配置 Home Assistant &middot; 智能改造家</title>
+
+    
+    <meta name="description" content="&lt;blockquote&gt;
+&lt;p&gt;通过本篇教程，你将完成对 Home Assistant 的进一步配置，个性化设置与管理你的智能家居设备。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;题外话&#34;&gt;题外话&lt;/h2&gt;
+
+&lt;p&gt;关于智能家居，我与很多人一样，因新房装修而开始关注，2014 年智能家居市场方兴未艾，还是传" />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="https://jun-long.github.io/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="https://jun-long.github.io/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="https://jun-long.github.io/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="https://jun-long.github.io/css/nav.css" />
+
+    
+
+    
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/default.min.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+        
+        <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+        <link href="http://feeds.feedburner.com/..." rel="alternate" type="application/rss+xml" title="智能改造家" />
+    
+    <meta name="generator" content="Hugo 0.26" />
+
+    <link rel="canonical" href="https://jun-long.github.io/post/15039392986790/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": ,
+        "logo": https://jun-long.github.io/images/logo.png
+    },
+    "author": {
+        "@type": "Person",
+        "name": ,
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": https://jun-long.github.io/images/logo.png,
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": https://jun-long.github.io,
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ],
+        "description": 智能改造家
+        
+    },
+    "headline": 树莓派 &#43; Home Assistant &#43; HomeKit 从零开始打造个人智能家居系统（5）：进阶配置 Home Assistant,
+    "name": 树莓派 &#43; Home Assistant &#43; HomeKit 从零开始打造个人智能家居系统（5）：进阶配置 Home Assistant,
+    "wordCount": 847,
+    "timeRequired": "PT4M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": en
+    },
+    "url": https://jun-long.github.io/post/15039392986790/,
+    "datePublished": 2017-08-29T21:49Z,
+    "dateModified": 2017-08-29T21:49Z,
+    
+    "image": {
+        "@type": "ImageObject",
+        "url": https://jun-long.github.io/https://ooo.0o0.ooo/2017/08/29/59a56b9e207d9.jpg,
+        "width": 3000,
+        "height": 1445
+    },
+    
+    
+    "description": ,
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": https://jun-long.github.io/post/15039392986790/
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="https://jun-long.github.io/">Home</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="https://jun-long.github.io/post/">Archives</a>
+            </li>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="http://feeds.feedburner.com/...">Subscribe</a> </div>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+  
+  <header class="main-header post-head" style="background-image: url(https://ooo.0o0.ooo/2017/08/29/59a56b9e207d9.jpg)">
+  
+  <nav class="main-nav overlay clearfix">
+
+
+  
+      <a class="blog-logo" href="https://jun-long.github.io/"><img src="https://jun-long.github.io/images/logo.png" alt="Home" /></a>
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">树莓派 &#43; Home Assistant &#43; HomeKit 从零开始打造个人智能家居系统（5）：进阶配置 Home Assistant</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2017-08-29T21:49:19&#43;08:00">
+            Aug 29, 2017
+          </time>
+        
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <blockquote>
+<p>通过本篇教程，你将完成对 Home Assistant 的进一步配置，个性化设置与管理你的智能家居设备。</p>
+</blockquote>
+
+<h2 id="题外话">题外话</h2>
+
+<p>关于智能家居，我与很多人一样，因新房装修而开始关注，2014 年智能家居市场方兴未艾，还是传统智能家居厂商的天下，同年 Apple 在 WWDC 上发布了 HomeKit 智能家居平台，到了 2015 年才在 iOS 9 中内置了“家庭”App。而在这一年，国内也诞生了小米智能家庭、阿里智能、京东微联等平台，可以说，智能家居领域我们是和世界同步的。</p>
+
+<p>2016 年接触了 <a href="https://github.com/nfarina/homebridge">Homebridge</a> 、 <a href="https://developer.apple.com/homekit/">HomeKit</a>、<a href="https://home-assistant.io/">Home Assistant</a> 等内容，我就尝试着自己也整一套试试。用户规模决定了相关领域的繁荣，网上关于智能家居的文章汗牛充栋，我自认为还是有些软硬件基础，期间却也走过不少弯路。如今跟大家分享这一点个人爱好，也不免拾人牙慧，因为官方文档就在那里，你不可能跳出这个框架之外。书写这个系列文章的初衷，就是想让更多人能够加入进来，哪怕是零基础的小白。所以我会选择一个我认为最笔直的路给你，我会添加很多的引用，还会提到一些我认为容易错的点，并且尽量不涉及代码与命令行，与其说是原创教程，不如说是一个中文版本的注释或诠释更为恰当。</p>
+
+<p>有人跟我说，还是太复杂，99％的有智能化需求的客户不会花时间去整这些。</p>
+
+<p>那么，这就是为了那1%不满足现有平台和 App 的用户而生的，足矣。</p>
+
+<p></p>
+
+<h2 id="一-检查配置">一、检查配置</h2>
+
+<p>有不少人反馈，在安装和配置中遇到了问题，或是 Home Assistant 界面直接无法显示，又或是某一个组件没有正常显示，通常后者还能在系统首页看到相关提示。</p>
+
+<blockquote>
+<p>每当组件或配置选项导致警告时，相关信息将存储在配置目录下的 <code>home-assistant.log</code> 文件中。此文件在 Home Assistant 开始时重置。</p>
+</blockquote>
+
+<p>Home Assistant 大多数异常情况都是因为 <code>configuration.yaml</code> 文件错误而导致的，而新手通常在不同地方取得这些配置，不同论坛、网站对于代码的显示效果是不同的，非常容易导致 YAML 文件语法错误，在修改 <code>configuration.yaml</code> 配置文件后，可在侧面板 <code>Configuration &gt; General &gt; Configuration Validation</code> 处检查，通过后再重启服务。</p>
+
+<p><img src="https://i.loli.net/2017/08/31/59a6e61dab008.png" alt="检查配置文件" /></p>
+
+<p>▲检查配置文件</p>
+
+<blockquote>
+<p>还是推荐使用支持 YAML 语法的 <a href="https://www.sublimetext.com/">Sublime</a> 或者 <a href="https://atom.io/">Atom</a> 对 <code>configuration.yaml</code> 进行修改，能够实时发现错误。</p>
+
+<p>复习一下 <strong>YAML</strong> 基本语法规则：</p>
+
+<ul>
+<li>大小写敏感</li>
+<li>使用缩进表示层级关系</li>
+<li>缩进时不允许使用Tab键，只允许使用空格。</li>
+<li>缩进的空格数目不重要，只要相同层级的元素左侧对齐即可</li>
+</ul>
+</blockquote>
+
+<p>对于同一种类的<a href="https://home-assistant.io/components/">组件</a>，如果有多个，或者多个不同平台的设备，按以下格式填写：</p>
+
+<pre><code class="language-yaml">sensor: # 组件名，在配置文件中不能重复
+  - platform: forecast
+    ...
+  - platform: bitcoin
+    ...
+</code></pre>
+
+<h2 id="二-自定义设备">二、自定义设备</h2>
+
+<p>一般设备接入后，显示的名称是一长串信息，如下图左边第一行设备所示，而自定义后，如下图右边所示。</p>
+
+<p><img src="https://i.loli.net/2017/08/31/59a6ed9597300.png" alt="设备显示" /></p>
+
+<p>▲设备显示</p>
+
+<h3 id="获取设备-id">获取设备 ID</h3>
+
+<p>所有设备在 Home Assistant 中进行配置，都有一个唯一的 ID，这个 ID 在侧面板 Developer Tools 中的 “&lt;&gt;”States 中获得。</p>
+
+<p><img src="https://i.loli.net/2017/08/31/59a6ef2747aaa.png" alt="获取设备 ID" /></p>
+
+<p>▲获取设备 ID</p>
+
+<blockquote>
+<p>别问我怎么区分同一类的不同设备，名字那么像，在首页操作哪个，哪个有反应，就是那个。:joy:</p>
+</blockquote>
+
+<h3 id="配置文件">配置文件</h3>
+
+<p>在 <code>configuration.yaml</code> 文件中，添加 <code>customize:</code> ，示例如下：</p>
+
+<pre><code class="language-yaml">homeassistant:
+  name: Home
+  unit_system: metric
+  # 示例
+  customize:             # 注意缩进 customize 属于 homeassistant 下级，与 name 同级 
+    sensor.living_room_motion:             # 设备 ID
+      friendly_name: 客厅动作传感器         # 昵称 即你想要的设备名
+      icon: mdi:run                        # 图标 即设备左侧显示，详情见下方引用
+      hidden: true                         # 是否在 Home Assistant 中隐藏
+      homebridge_name: 动作传感器           #在 iOS 家庭 App 中的名称
+      homebridge_hidden: false             #是否在 iOS 家庭 App 中隐藏
+    thermostat.family_room:
+      entity_picture: https://example.com/images/nest.jpg #显示图片，与图标二选一
+      friendly_name: Nest
+    switch.wemo_switch_1:
+      friendly_name: Toaster
+      entity_picture: /local/toaster.jpg
+    switch.wemo_switch_2:
+      friendly_name: Kitchen kettle
+      icon: mdi:kettle
+</code></pre>
+
+<p>保存后，可在侧面板找到 <code>Configuration &gt; General &gt; Configuration Reloading &gt; RELOAD CORE</code>，重载相关配置，而<strong>无需重启</strong> Home Assistant 服务。</p>
+
+<blockquote>
+<p>更多自定义内容见<a href="https://home-assistant.io/docs/configuration/customizing-devices/">官方文档</a>。</p>
+
+<p><code>icon</code> 图标设置，采用 <a href="https://materialdesignicons.com/">Material Design Icons</a> 网站内的图标，在<code>icon: mdi:</code> 后输入想要的图标名称。</p>
+
+<p><img src="https://i.loli.net/2017/08/31/59a6f6236f74c.png" alt="图标名" /></p>
+</blockquote>
+
+<h2 id="三-分组分页">三、分组分页</h2>
+
+<h3 id="设备显示">设备显示</h3>
+
+<p>设备添加后默认都是独立的，一部分可控制的以<strong>卡片（Card）</strong>形式显示，还有一部分仅显示信息的以<strong>徽章（Badge）</strong>形式显示。有些同类设备也会有默认分组（Light、Switch 等）。设备数量增多后就会显得十分不便。</p>
+
+<p><img src="https://i.loli.net/2017/08/31/59a6feae0ddea.jpg" alt="默认显示" /></p>
+
+<p>▲默认显示</p>
+
+<p>而下图中，玄关、客厅、餐厅等等，虽然同处于一个页面内，每一个又包含了多个设备，但是明确的分类与组合，使得使用效率与体验大大提升。Home Assistant 采用<strong>组（Group）</strong>的概念来组合设备，玄关、客厅等，每个都是一个<strong>组（Group）</strong>，你可以根据自身需求，任意设置不同的“组”，同一设备可加入多个“组”，甚至“组”也能嵌套“组”。</p>
+
+<p><img src="https://i.loli.net/2017/08/31/59a6fb848edbf.png" alt="设备分组" /></p>
+
+<p>▲设备分组</p>
+
+<h3 id="设备分组">设备分组</h3>
+
+<p>继续图中房间分类为例，要实现这样的效果，需要在 <code>configuration.yaml</code> 文件中，添加 <code>group:</code> ，示例如下：</p>
+
+<pre><code class="language-yaml">homeassistant:
+  name: Home
+  unit_system: metric
+# 示例
+group:                  # 注意缩进 group 与 homeassistant 同级
+  rooms_view:           # 这是整个 ROOMS 页的设置 下节会讲解分页
+    name: ROOMS         # 显示名称
+    view: yes           #是否分页 即在页头显示
+    entities:           # ROOM 分页下的组
+      - group.Entrance  # 玄关
+      - group.LivingRoom
+      - group.DinnerRoom
+      - group.CookRoom
+      - group.BedRoom1
+      - group.BedRoom2
+  Entrance:             # 一个典型的 group，这一行名字自定义
+    name: 玄关          # 显示名称
+    view: no            # 不分页，
+    icon: mdi:home-variant             # 组作为一个整体时的图标
+    entities:                          # 组下包含设备
+      - binary_sensor.door_window_sensor_xxxxxx  # 玄关入户门 ID
+      - binary_sensor.motion_sensor_xxxxxxxxxx   # 玄关人体传感器 ID
+      - switch.plug_158d0000fa791f               # 玄关入户灯 ID
+  LivingRoom:
+    name: 客厅
+    view: no
+    icon: mdi:sofa
+    entities:
+      - sensor.temperature_xxxxxxxxxx
+      - sensor.humidity_xxxxxxxxxx
+      - binary_sensor.motion_sensor_xxxxxxxxxx
+      - switch.wall_switch_right_xxxxxxxxxx
+      - switch.wall_switch_right_xxxxxxxxxx
+      - switch.plug_xxxxxxxxxx
+      - media_player.marantz_nr1504
+  DinnerRoom:
+    name: 餐厅
+    view: no
+    icon: mdi:glass-tulip
+    entities:
+      - switch.wall_switch_left_xxxxxxxxxx
+      - switch.wall_switch_left_xxxxxxxxxx
+      - switch.plug_xxxxxxxxxx
+  CookRoom:
+    name: 厨房
+    view: no
+    icon: mdi:pot
+    entities:
+      - binary_sensor.motion_sensor_xxxxxxxxxx
+      - switch.wall_switch_xxxxxxxxxx
+      - switch.plug_xxxxxxxxxx
+  BedRoom1:
+    name: 主卧
+    view: no
+    icon: mdi:hotel
+    entities:
+      - sensor.temperature_xxxxxxxxxx
+      - sensor.humidity_xxxxxxxxxx
+      - switch.wall_switch_xxxxxxxxxx
+      - switch.plug_xxxxxxxxxx
+      - switch.plug_xxxxxxxxxx
+      - switch.plug_xxxxxxxxxx
+      - switch.plug_xxxxxxxxxx
+  BedRoom2:
+    name: 次卧
+    view: no
+    icon: mdi:hotel
+    entities:
+      - sensor.temperature_1xxxxxxxxxx
+      - sensor.humidity_1xxxxxxxxxx
+      - switch.wall_switch_1xxxxxxxxxx
+      - switch.plug_1xxxxxxxxxx
+</code></pre>
+
+<p>保存后，可在侧面板找到 <code>Configuration &gt; General &gt; Configuration Reloading &gt; RELOAD GROUP</code>，重载相关配置，而<strong>无需重启</strong> Home Assistant 服务。</p>
+
+<h3 id="设备分页">设备分页</h3>
+
+<p>当设备进一步增多后，可以设置分页，来更好地显示设备。如下图中，我分了“HOME”、“ROOMS”、“DEVICES”、“WEATHER”四个页面。</p>
+
+<p><img src="https://i.loli.net/2017/08/31/59a7076094d0d.png" alt="设备分页" /></p>
+
+<p>▲设备分页</p>
+
+<p>继续在 <code>group:</code> 中修改配置，结合上节内容，示例如下：</p>
+
+<pre><code class="language-yaml">homeassistant:
+  name: Home
+  unit_system: metric
+# 示例
+group:                  # 注意缩进 group 与 homeassistant 同级
+  default_view:         # 默认首页 即 HOME 页
+  view: yes             # 是否分页 即在页头显示
+  entities:             # 第一个分页下的设备与组
+    - sun.sun
+    - sensor.now_weather
+    - sensor.now_tmp
+    - group.Today
+    - group.SystemMonitor
+    - group.Rooms
+  rooms_view:             # 这是整个 ROOMS 页的设置
+    name: ROOMS           # 显示名称
+    view: yes             # 是否分页 即在页头显示
+    entities:             # ROOM 分页下的组
+      - group.Entrance    # 玄关
+      - group.LivingRoom
+      - group.DinnerRoom
+      - group.CookRoom
+      - group.BedRoom1
+      - group.BedRoom2
+  devices_view:           # 这是整个 DEVICES 页的设置
+    name: DEVICES         # 显示名称
+    view: yes             # 是否分页 即在页头显示
+    entities:
+      - group.Lights
+      - media_player.marantz_nr1504
+      - group.Battery
+  weather_view:           # 这是整个 WEATHER 页的设置
+    name: WEATHER         # 显示名称
+    view: yes             # 是否分页 即在页头显示
+    entities:
+      - group.WeatherNow
+      - group.WeatherToday
+      - group.WeatherTomorrow
+      - group.AQI
+</code></pre>
+
+<p>保存后，可在侧面板找到 <code>Configuration &gt; General &gt; Configuration Reloading &gt; RELOAD GROUP</code>，重载相关配置，而<strong>无需重启</strong> Home Assistant 服务。</p>
+
+<blockquote>
+<p>更多自定义内容见<a href="https://home-assistant.io/components/group/">官方文档</a>。</p>
+
+<p>如果你足够细心，你会发现，在 Developer Tools 中的 “&lt;&gt;”States 中，所有的“组”也有自己的 ID。</p>
+</blockquote>
+
+<h2 id="四-拓展配置">四、拓展配置</h2>
+
+<h3 id="拆分配置">拆分配置</h3>
+
+<p>所有的配置信息都集成在 <code>configuration.yaml</code> 中，可以想象，当设备配置信息增多时，<code>configuration.yaml</code> 将变得十分臃肿，在没有更好的可视化配置方法之前，我们可以对 <code>configuration.yaml</code> 进行拆分，以提高可读性。</p>
+
+<p>以上文自定义设备为例，在配置文件夹内新建 <code>customize.yaml</code> 文件独立存放设备的自定义信息，其中内容如下。</p>
+
+<pre><code class="language-yaml">sensor.living_room_motion:      #设备 ID 通常会配置以下内容
+  friendly_name: 客厅动作传感器  #昵称 即你想要的设备名
+  icon: mdi:run                 #图标 即设备左侧显示，详情见下方引用
+  hidden: true                  #是否在 Home Assistant 中隐藏
+  homebridge_name: 动作传感器    #在 iOS 家庭 App 中的名称
+  homebridge_hidden: false      #是否在 iOS 家庭 App 中隐藏
+</code></pre>
+
+<p>再修改 <code>configuration.yaml</code> 文件，以 <code>!include</code> 引用独立出来的配置信息，如下所示。</p>
+
+<pre><code class="language-yaml">homeassistant:
+  name: Home
+  unit_system: metric
+  # 示例
+  customize: !include customize.yaml
+group: !include group.yaml # group 同理
+</code></pre>
+
+<blockquote>
+<p><a href="https://home-assistant.io/docs/configuration/splitting_configuration/">官方文档</a></p>
+
+<p>请注意，<code>homeassistant:</code>  之后每一行缩进两个空格。由于Home Assistant中的配置文件是基于YAML语言的，因此缩进和间距很重要。还要注意，<code>customize:</code> 是 <code>homeassistant:</code> 的子级，而 <code>group:</code> 与 <code>homeassistant:</code> 同级。</p>
+</blockquote>
+
+<h3 id="打包配置">打包配置</h3>
+
+<p>Home Assistant 还提供了一个方法，可以将多个组件、个性化设置、自动化信息捆绑在一起，一同管理。</p>
+
+<p>比如，我有一个“灯+开关”的组合，我对其进行了自定义，并设置了自动化，我可以建立一个名为 <code>my_light_switch_package.yaml</code> 之类名字的文件，来存放这一组合的所有信息，其内容如下：</p>
+
+<pre><code class="language-yaml">homeassistant:
+  customize:
+    switch.xxxxxx.xxxxx:
+      friendly_name: XXX
+      homebridge_name: XXX
+    ...
+switch:
+  - platform: rest
+    ...
+light:
+  - platform: rpi
+    ...
+group:
+  light&amp;switch:
+    name: XXX
+    view: no
+    icon: mdi:light
+    entities: 
+      - switch.xxxxxx.xxxxx
+</code></pre>
+
+<p>在这个文件中，不但对接入了组件，还对其进行了自定义，并建立了分组。</p>
+
+<p>接下来在 Home Assistant 配置目录中创建一个名为“packages”的文件夹，将 <code>my_light_switch_package.yaml</code> 放入其中，在 <code>configuration.yaml</code> 中添加 <code>packages</code> 信息，。</p>
+
+<pre><code class="language-yaml">homeassistant:
+  packages: !include_dir_named packages # 此语句表示会自动调用 packages 文件夹下的文件。注意层级。
+</code></pre>
+
+<blockquote>
+<p><a href="https://home-assistant.io/docs/configuration/packages/">官方文档</a></p>
+</blockquote>
+
+<h2 id="五-自定义前端显示">五、自定义前端显示</h2>
+
+<h3 id="自定义侧面板">自定义侧面板</h3>
+
+<p>我使用 Home Assistant 其中的一个目的就是只用打开一个 App（Web）就可以控制所有设备，利用 <code>Panel iFrame</code> 组件，我们可以将一些常用的 Web 页面集成到侧面板。比如路由器管理页面、个人博客页面、媒体服务器等等。</p>
+
+<p><img src="https://i.loli.net/2017/08/31/59a7cdbcf2394.png" alt="自定义侧面板" /></p>
+
+<p>▲自定义侧面板</p>
+
+<p>以路由器为例添加如下内容到 <code>configuration.yaml</code> 文件中：</p>
+
+<pre><code class="language-yaml">panel_iframe:
+  netgear:               #面板名称
+    title: Netgear       #标题（必填）,在侧面板中显示。
+    icon: mdi:router-wireless         #图标（可选）
+    url: http://192.168.2.1/start.htm #要打开的URL（必填）。
+</code></pre>
+
+<h3 id="自定义主题">自定义主题</h3>
+
+<p><img src="https://i.loli.net/2017/08/31/59a7d5d816a5c.png" alt="自定义主题" /></p>
+
+<p>▲自定义主题</p>
+
+<p><strong>主题（Themes）</strong>提供了字体、颜色等的自定义，而主题的设置，涉及前端相关知识，这里不做过多讲解（主要在官网也没找到几个好看的……），仅提供一个主题配置供大家参考。</p>
+
+<p>在 <code>configuration.yaml</code> 文件中的 <code>frontend:</code> 下进行配置：</p>
+
+<pre><code class="language-yaml">frontend:
+  themes:
+    midnight:
+      # 主体
+      primary-color: '#5294E2'                                                      
+      accent-color: '#E45E65'                                                         
+      dark-primary-color: 'var(--accent-color)'                                       
+      light-primary-color: 'var(--accent-color)'                                      
+
+      # 文字
+      primary-text-color: '#FFFFFF'                                                   
+      text-primary-color: 'var(--primary-text-color)'                                 
+      secondary-text-color: '#5294E2'                                                 
+      disabled-text-color: '#7F848E'                                                  
+      label-badge-border-color: 'green'                                              
+
+      # 背景
+      primary-background-color: '#383C45'                                             
+      secondary-background-color: '#383C45'                                           
+      divider-color: 'rgba(0, 0, 0, .12)'                                             
+
+      # 表格
+      table-row-background-color: '#353840'                                           
+      table-row-alternative-background-color: '#3E424B'                               
+
+      # 导航菜单
+      paper-listbox-color: 'var(--primary-color)'                                     
+      paper-listbox-background-color: '#2E333A'                                       
+      paper-grey-50: 'var(--primary-text-color)'
+      paper-grey-200: '#414A59'                                                       
+
+      # 卡片
+      paper-card-header-color: 'var(--accent-color)'                                  
+      paper-card-background-color: '#434954'                                          
+      paper-dialog-background-color: '#434954'                                        
+      paper-item-icon-color: 'var(--primary-text-color)'                             
+      paper-item-icon-active-color: '#F9C536'                                         
+      paper-item-icon_-_color: 'green'
+      paper-item-selected_-_background-color: '#434954'                               
+      paper-tabs-selection-bar-color: 'green'
+
+      # 标签
+      label-badge-red: 'var(--accent-color)'                                         
+      label-badge-text-color: 'var(--primary-text-color)'                             
+      label-badge-background-color: '#2E333A'                                         
+
+      # 开关
+      paper-toggle-button-checked-button-color: 'var(--accent-color)'
+      paper-toggle-button-checked-bar-color: 'var(--accent-color)'
+      paper-toggle-button-checked-ink-color: 'var(--accent-color)'
+      paper-toggle-button-unchecked-button-color: 'var(--disabled-text-color)'
+      paper-toggle-button-unchecked-bar-color: 'var(--disabled-text-color)'
+      paper-toggle-button-unchecked-ink-color: 'var(--disabled-text-color)'
+
+      # 滑块
+      paper-slider-knob-color: 'var(--accent-color)'
+      paper-slider-knob-start-color: 'var(--accent-color)'
+      paper-slider-pin-color: 'var(--accent-color)'
+      paper-slider-active-color: 'var(--accent-color)'
+      paper-slider-container-color: 'linear-gradient(var(--primary-background-color), var(--secondary-background-color)) no-repeat'
+      paper-slider-secondary-color: 'var(--secondary-background-color)'
+      paper-slider-disabled-active-color: 'var(--disabled-text-color)'
+      paper-slider-disabled-secondary-color: 'var(--disabled-text-color)'
+
+      # Google
+      google-red-500: '#E45E65'
+      google-green-500: '#39E949'
+</code></pre>
+
+<p>重启 Home Assistant 服务之后，我们可以在侧边栏 <code>Configuration &gt; General &gt; Set a theme</code> 选择相关主题。</p>
+
+<p><img src="https://i.loli.net/2017/08/31/59a7d9d85b26b.png" alt="选择主题" /></p>
+
+<p>▲选择主题</p>
+
+<blockquote>
+<p><a href="https://home-assistant.io/components/frontend/">官方文档</a>与<a href="https://community.home-assistant.io/search?q=theme">论坛</a>。</p>
+</blockquote>
+
+<h2 id="六-下节预告">六、下节预告</h2>
+
+<p>经过前期所有的设置，我们已经可以在 Home Assistant 中较好地使用所有接入设备。但这个“智能”家居还是显得一点都不智能，并没有达到理想中的样子。而我们将在下节开始涉及整个智能家居系统的灵魂——自动化（Automation）。</p>
+
+<ul>
+<li>Home Assistant 自动化</li>
+</ul>
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+
+
+
+
+
+
+
+
+<figure class="author-image">
+    <a class="img" href="https://jun-long.github.io/" style="background-image: url(/images/logo.png)"><span class="hidden">Junlong's Picture</span></a>
+</figure>
+
+
+<section class="author">
+  <h4><a href="https://jun-long.github.io/">Junlong</a></h4>
+  
+  <p>智能改造家</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">Hubei, China</span>
+    <span class="author-link icon-link"><a href="https://jun-long.github.io">https://jun-long.github.io</a></span>
+  </div>
+</section>
+
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=%e6%a0%91%e8%8e%93%e6%b4%be%20%2b%20Home%20Assistant%20%2b%20HomeKit%20%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%e6%89%93%e9%80%a0%e4%b8%aa%e4%ba%ba%e6%99%ba%e8%83%bd%e5%ae%b6%e5%b1%85%e7%b3%bb%e7%bb%9f%ef%bc%885%ef%bc%89%ef%bc%9a%e8%bf%9b%e9%98%b6%e9%85%8d%e7%bd%ae%20Home%20Assistant&nbsp;-&nbsp;%e6%99%ba%e8%83%bd%e6%94%b9%e9%80%a0%e5%ae%b6&amp;url=https%3a%2f%2fjun-long.github.io%2fpost%2f15039392986790%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fjun-long.github.io%2fpost%2f15039392986790%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=https%3a%2f%2fjun-long.github.io%2fpost%2f15039392986790%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+
+
+
+
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+      <a class="read-next-story" style="background-image: url(https://i.loli.net/2017/09/02/59a99384b2452.jpg)" href="https://jun-long.github.io/post/15039393082613/">
+          <section class="post">
+              <h2>树莓派 &#43; Home Assistant &#43; HomeKit 从零开始打造个人智能家居系统（6）：自动化</h2>
+              
+          </section>
+      </a>
+  
+  
+      <a class="read-next-story prev" style="background-image: url(https://i.loli.net/2017/08/29/59a4de4f58818.jpg)" href="https://jun-long.github.io/post/15037439183633/">
+          <section class="post">
+              <h2>树莓派 &#43; Home Assistant &#43; HomeKit 从零开始打造个人智能家居系统（4）：连接小米设备与HomeKit</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">智能改造家</a> &copy; 2017</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="https://jun-long.github.io/js/jquery.js"></script>
+    <script type="text/javascript" src="https://jun-long.github.io/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="https://jun-long.github.io/js/index.js"></script>
+    
+</body>
+</html>
+

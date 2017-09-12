@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        
+        <meta name="twitter:card" content="summary_large_image"/>
+        <meta name="twitter:image" content="https://i.loli.net/2017/08/29/59a4de4f58818.jpg"/>
+    
+
+
+
+<meta name="twitter:title" content="树莓派 &#43; Home Assistant &#43; HomeKit 从零开始打造个人智能家居系统（4）：连接小米设备与HomeKit"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@"/>
+
+
+
+  	<meta property="og:title" content="树莓派 &#43; Home Assistant &#43; HomeKit 从零开始打造个人智能家居系统（4）：连接小米设备与HomeKit &middot; 智能改造家" />
+  	<meta property="og:site_name" content="智能改造家" />
+  	<meta property="og:url" content="https://jun-long.github.io/post/15037439183633/" />
+
+    
+       <meta property="og:image" content="https://i.loli.net/2017/08/29/59a4de4f58818.jpg"/>
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2017-08-28T23:49:19&#43;08:00" />
+
+    
+    
+
+    <title>树莓派 &#43; Home Assistant &#43; HomeKit 从零开始打造个人智能家居系统（4）：连接小米设备与HomeKit &middot; 智能改造家</title>
+
+    
+    <meta name="description" content="&lt;blockquote&gt;
+&lt;p&gt;通过本篇教程，你将在 Home Assistant 中接入小米智能家居设备，并在安装配置 Home Bridge 插件后，实现 HomeKit 功能，即在 iOS 家庭 App 中控制这些设备。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;智能家居是一个系统化的工程，设备之间的通信就是基" />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="https://jun-long.github.io/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="https://jun-long.github.io/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="https://jun-long.github.io/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="https://jun-long.github.io/css/nav.css" />
+
+    
+
+    
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/default.min.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+        
+        <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+        <link href="http://feeds.feedburner.com/..." rel="alternate" type="application/rss+xml" title="智能改造家" />
+    
+    <meta name="generator" content="Hugo 0.26" />
+
+    <link rel="canonical" href="https://jun-long.github.io/post/15037439183633/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": ,
+        "logo": https://jun-long.github.io/images/logo.png
+    },
+    "author": {
+        "@type": "Person",
+        "name": ,
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": https://jun-long.github.io/images/logo.png,
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": https://jun-long.github.io,
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ],
+        "description": 智能改造家
+        
+    },
+    "headline": 树莓派 &#43; Home Assistant &#43; HomeKit 从零开始打造个人智能家居系统（4）：连接小米设备与HomeKit,
+    "name": 树莓派 &#43; Home Assistant &#43; HomeKit 从零开始打造个人智能家居系统（4）：连接小米设备与HomeKit,
+    "wordCount": 510,
+    "timeRequired": "PT3M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": en
+    },
+    "url": https://jun-long.github.io/post/15037439183633/,
+    "datePublished": 2017-08-28T23:49Z,
+    "dateModified": 2017-08-28T23:49Z,
+    
+    "image": {
+        "@type": "ImageObject",
+        "url": https://jun-long.github.io/https://i.loli.net/2017/08/29/59a4de4f58818.jpg,
+        "width": 3000,
+        "height": 1445
+    },
+    
+    
+    "description": ,
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": https://jun-long.github.io/post/15037439183633/
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="https://jun-long.github.io/">Home</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="https://jun-long.github.io/post/">Archives</a>
+            </li>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="http://feeds.feedburner.com/...">Subscribe</a> </div>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+  
+  <header class="main-header post-head" style="background-image: url(https://i.loli.net/2017/08/29/59a4de4f58818.jpg)">
+  
+  <nav class="main-nav overlay clearfix">
+
+
+  
+      <a class="blog-logo" href="https://jun-long.github.io/"><img src="https://jun-long.github.io/images/logo.png" alt="Home" /></a>
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">树莓派 &#43; Home Assistant &#43; HomeKit 从零开始打造个人智能家居系统（4）：连接小米设备与HomeKit</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2017-08-28T23:49:19&#43;08:00">
+            Aug 28, 2017
+          </time>
+        
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <blockquote>
+<p>通过本篇教程，你将在 Home Assistant 中接入小米智能家居设备，并在安装配置 Home Bridge 插件后，实现 HomeKit 功能，即在 iOS 家庭 App 中控制这些设备。</p>
+</blockquote>
+
+<p>智能家居是一个系统化的工程，设备之间的通信就是基础建设。消费级智能家居硬件设备的爆发，使得我们能够轻松的搭建个人智能家居系统，而平台与产品的多样性也带来了多种的通信方式，诸如 Zigbee、蓝牙、WiFi、LAN。</p>
+
+<p></p>
+
+<p>小米生态链企业<a href="www.lumiunited.com/">绿米联创</a>生产的米家智能家庭组合使用的就是网关+子设备的模式，网关通过 WiFi 连入家庭网络，子设备通过 Zigbee 与网关连接。这可能是目前最适入手的智能家居模式了，体积小、功耗低、无需布线、不干扰 WiFi 设备，这也是我选择小米平台的一个主要原因。</p>
+
+<p>小米旗下生态链企业众多，不同的产品也需要不同的连接方式。一般采用 Zigbee 技术的设备需要网关支持，在 Home Assistant 中只需要接入网关，就可以控制网关下的所有设备，而其他独立入网的设备，如米家扫地机器人等，需要单独接入。0.50 之后版本的 Home Assistant 提供的原生组件，支持了部分小米平台的设备。</p>
+
+<p><img src="https://i.loli.net/2017/08/28/59a410cd6d480.png" alt="小米组件" /></p>
+
+<p>▲Home Assistant 小米组件</p>
+
+<blockquote>
+<p>博主 <a href="http://www.cxlwill.com/">cxlwill</a> 独立整理了小米生态链设备在 Home Assistant 的支持列表（中英双语），表格使用 <a href="https://docs.google.com/spreadsheets/d/1LI0n_aK-9TuKXrz-PPOAbVuaN8JUj70s5F0MyK8FtsM/edit?usp=sharing">Google SpreadSheet</a> 编辑，国内用户请通过 <a href="http://note.youdao.com/noteshare?id=84e800902f163f8d6a624b3f038649f3">有道云笔记</a> 访问。</p>
+</blockquote>
+
+<h2 id="一-小米设备接入-home-assistant">一、小米设备接入 Home Assistant</h2>
+
+<blockquote>
+<p>小米设备众多，我仅选择官方原生支持接入的作为初级教程内容，PS：第一代小米多功能网关无法接入。</p>
+</blockquote>
+
+<h3 id="小米多功能网关">小米多功能网关</h3>
+
+<p>我们需要准备小米多功能网关的 <code>mac</code> 地址和局域网通信协议密码 <code>key</code>。</p>
+
+<p>在米家 App 中打开小米多功能网关，按图示获得相关信息。</p>
+
+<p><img src="https://i.loli.net/2017/08/28/59a41b713160e.jpg" alt="获取 mac &amp; key" /></p>
+
+<p>▲获取 <code>mac</code> &amp; <code>key</code></p>
+
+<p><img src="https://i.loli.net/2017/08/28/59a41b71428e4.jpg" alt="获取 mac &amp; key" /></p>
+
+<p>▲获取 <code>mac</code> &amp; <code>key</code></p>
+
+<blockquote>
+<p>iOS 与 Android 显示或有不同。</p>
+</blockquote>
+
+<p>在 <code>configuration.yaml</code> 文件中添加如下代码：</p>
+
+<pre><code class="language-yaml">xiaomi:
+  gateways:
+      - mac: 你的网关mac，不含冒号
+        key: 你的局域网通信协议key（注意空格与缩进）
+</code></pre>
+
+<p>多个网关，格式如下：</p>
+
+<pre><code class="language-yaml">xiaomi:
+  gateways:
+    - mac: xxxxxxxxxxxx
+      key: xxxxxxxxxxxxxxxx
+    - mac: xxxxxxxxxxxx
+      key: xxxxxxxxxxxxxxxx
+</code></pre>
+
+<p>重启 Home Assistant 服务后即可识别相关设备。</p>
+
+<h3 id="小米路由器">小米路由器</h3>
+
+<p>在 <code>configuration.yaml</code> 文件中添加如下代码：</p>
+
+<pre><code class="language-yaml">device_tracker:
+  - platform: xiaomi
+    host: 路由器 IP
+    password: 路由器 密码
+</code></pre>
+
+<h3 id="yeelight">Yeelight</h3>
+
+<p>Home Assistant 支持 Yeelight 以下型号产品。</p>
+
+<ul>
+<li><strong>YLDP01YL</strong>: LED Bulb (White)</li>
+<li><strong>YLDP02YL</strong>: LED Bulb (Color)</li>
+<li><strong>YLDP03YL</strong>: LED Bulb (Color) - E26</li>
+<li><strong>YLDD02YL</strong>: Lightstrip (Color)</li>
+</ul>
+
+<p>首先你需要 Yeelight App 中打开“极客模式”，在 <code>configuration.yaml</code> 文件中按以下模板添加代码：</p>
+
+<blockquote>
+<p>如果你在 <code>configuration.yaml</code> 中开启了 <code>discovery:</code> 功能，那么在开启极客模式后，重启 Home Assistant，系统会自动添加相关灯具。</p>
+</blockquote>
+
+<pre><code class="language-yaml">light:
+  - platform: yeelight
+    devices:
+      192.168.1.25: #改为你的 Yeelight 相应IP地址。
+        name: Living Room
+        transition: 1000
+        use_music_mode: True #(音乐随动模式，默认关闭)
+        save_on_change: False #(记忆设置，默认开启)
+      192.168.1.13: #多个 Yeelight 接入。
+        name: Front Door
+</code></pre>
+
+<h2 id="二-home-bridge-插件">二、Home Bridge 插件</h2>
+
+<blockquote>
+<p><a href="https://github.com/nfarina/homebridge">Home Bridge</a> 是前苹果员工的作品，基于 NodeJS，模拟 iOS HomeKit API。有如其名，作为“桥”来连接 iOS 设备，使得本不支持 HomeKit 的设备能够接入。</p>
+</blockquote>
+
+<h3 id="在-hass-io-中安装第三方插件-home-bridge">在 Hass.io 中安装第三方插件 Home Bridge</h3>
+
+<p>打开侧边栏 Hass.io，点击进入插件商店</p>
+
+<p><img src="https://i.loli.net/2017/08/28/59a423d5e7e56.png" alt="安装 Home Bridge 插件" /></p>
+
+<p>▲安装 Home Bridge 插件</p>
+
+<p>添加插件地址：<a href="https://github.com/JunlongZhao/addon-homebridge">https://github.com/JunlongZhao/addon-homebridge</a> 后保存。（换行后可添加多个地址）</p>
+
+<p><img src="https://i.loli.net/2017/08/28/59a423d5f14a0.png" alt="安装 Home Bridge 插件" /></p>
+
+<p>▲安装 Home Bridge 插件</p>
+
+<p>在页面底部找到新的 Home Bridge 插件，进入安装。</p>
+
+<p><img src="https://i.loli.net/2017/08/28/59a423d607cfb.png" alt="安装 Home Bridge 插件" /></p>
+
+<p>▲安装 Home Bridge 插件</p>
+
+<p><img src="https://i.loli.net/2017/08/28/59a423d60a279.png" alt="安装 Home Bridge 插件" /></p>
+
+<p>▲安装 Home Bridge 插件</p>
+
+<blockquote>
+<p>此 Home Bridge 插件经过我的修改，集成了 <a href="https://github.com/home-assistant/homebridge-homeassistant">homebridge-homeassistant</a> 与 <a href="https://github.com/mkellsy/homebridge-config-ui">homebridge-config-ui</a> 插件，不需要额外添加。另外由于网络原因，安装可能较慢，不要着急，睡一觉起来它肯定安装好了。:joy:</p>
+
+<p><strong>homebridge-homeassistant</strong>：将 Home Assistant 设备接入 Home Bridge。</p>
+
+<p><strong>homebridge-config-ui</strong>：Home Bridge 可视化管理界面。</p>
+</blockquote>
+
+<h3 id="配置-home-bridge-插件">配置 Home Bridge 插件</h3>
+
+<p>打开 <code>\\HASSIO\config\homebridge\config.json</code> 文件，按以下模板修改：</p>
+
+<pre><code class="language-json">{
+  &quot;bridge&quot;: {
+    &quot;name&quot;: &quot;Home Assistant&quot;,
+    &quot;pin&quot;: &quot;123-45-678&quot;, /*随意八位pin码*/
+    &quot;port&quot;: 51826,
+    &quot;username&quot;: &quot;XX:XX:XX:XX:XX:XX&quot; /*你的树莓派mac地址*/
+  },
+  &quot;description&quot;: &quot;Homebridge for Home Assistant&quot;,
+  &quot;platforms&quot;: [
+    {
+      &quot;platform&quot;: &quot;HomeAssistant&quot;,
+      &quot;name&quot;: &quot;HomeAssistant&quot;,
+      &quot;host&quot;: &quot;http://192.168.1.11:8123&quot;, /*你的 Home Assistant 地址*/
+      &quot;password&quot;: &quot;raspberry&quot;, /*你的 Home Assistant 密码*/
+      &quot;supported_types&quot;: [&quot;fan&quot;, &quot;binary_sensor&quot;, &quot;sensor&quot;, &quot;garage_door&quot;, &quot;input_boolean&quot;, &quot;light&quot;, &quot;lock&quot;, &quot;media_player&quot;, &quot;rollershutter&quot;, &quot;scene&quot;, &quot;switch&quot;],
+      &quot;default_visibility&quot;: &quot;visible&quot;,
+      &quot;logging&quot;: true
+    },
+    {/*homebridge-config-ui*/
+      &quot;platform&quot;: &quot;config&quot;,
+      &quot;name&quot;: &quot;Config&quot;,
+      &quot;port&quot;: 8124,
+      &quot;log&quot;: &quot;/var/log/daemon.log&quot;,
+      &quot;restart&quot;: &quot;sudo systemctl restart homebridge.service&quot;
+    }
+  ]
+}
+</code></pre>
+
+<p>并在 <code>configuration.yaml</code> 添加如下代码：</p>
+
+<pre><code class="language-yaml"># 在 Hass.io 侧边栏添加 homebridge-config-ui 的入口
+panel_iframe:
+  homebridge:
+    title: Homebridge
+    icon: mdi:home-automation
+    url: http://192.168.1.11:8124 #你的 Home Assistant IP 地址
+</code></pre>
+
+<p>重启 Home Assistant，并在 Hass.io 中开启 Home Bridge 插件。</p>
+
+<p><img src="https://i.loli.net/2017/08/29/59a52fb970baf.png" alt="Home Bridge 插件" /></p>
+
+<p>▲ Home Bridge 插件</p>
+
+<p>整体而言，除了网络的问题之外，Hass.io 的安装还是很方便的，如果你曾经折腾过 Home Bridge 的话，Hass.io 使你不用费心搭建环境、设置启动、手动调试，一切都在 Hass.io 页面中就可以完成了。</p>
+
+<blockquote>
+<p>如果你有其他的 Home Bridge 插件需要安装，按以下格式在 Options 内添加。</p>
+
+<pre><code class="language-json">{
+  &quot;debug&quot;: false,
+  &quot;plugins&quot;: [
+    &quot;homebridge-dummy --registry=https://registry.npm.taobao.org&quot;,
+    &quot;homebridge-mysmartlock --registry=https://registry.npm.taobao.org&quot;
+  ]
+}
+</code></pre>
+</blockquote>
+
+<h2 id="三-设置-ios-设备中的-家庭-app">三、设置 iOS 设备中的“家庭”App</h2>
+
+<blockquote>
+<p>此节 Android 用户可略过。</p>
+</blockquote>
+
+<p><img src="https://images.apple.com/cn/ios/home/images/overview/hero_lockup_medium.png" alt="家庭 App" /></p>
+
+<p>▲家庭 App</p>
+
+<p><img src="https://images.apple.com/cn/ios/home/images/overview/rooms_medium.jpg" alt="房间" /></p>
+
+<p>▲房间</p>
+
+<p><img src="https://images.apple.com/cn/ios/home/images/overview/scenes_medium.png" alt="场景" /></p>
+
+<p>▲场景</p>
+
+<blockquote>
+<p>有了家庭 App，你就可以轻松安全地掌控各种 HomeKit 配件。比如通过 iPhone 让 Siri 帮你关灯，或者从 iPad 上看看门口是谁。家庭 App 能让你连接的各种设备，更高效、智能地为你工作。</p>
+
+<p>家庭 App 会按照房间将配件分组，让你只需轻点一下，就可轻松控制家中任何角落的装置。你甚至可以对 Siri 说“关掉卧室的灯”或是“打开楼上的空调”。而通过 3D Touch，按住一个图标，就能执行调暗灯光或是调节恒温器之类更复杂的任务。</p>
+
+<p>家庭 App 能让你设置多种场景，从而通过一个指令让多个配件联合工作。比如，你可以创建一个名为“我出门了”的场景，便可关闭灯光，锁好房门，以及调低恒温器的温度。</p>
+
+<p>Apple <a href="https://www.apple.com/cn/ios/home/">官方页面</a>，以及<a href="https://support.apple.com/zh-cn/HT204893">设置教程</a>。</p>
+</blockquote>
+
+<h3 id="在家庭-app-中添加-桥">在家庭 App 中添加 “桥”</h3>
+
+<p>Home Assistant 结合 Home Bridge 插件，使得原本不支持 HomeKit 的设备也能够接入 iOS 的家庭 App，Home Bridge 插件启动后，打开家庭 App 进行以下操作：</p>
+
+<p><img src="https://i.loli.net/2017/08/29/59a533bf7a4d8.jpg" alt="接入家庭 App" /></p>
+
+<p>▲接入家庭 App</p>
+
+<p><img src="https://i.loli.net/2017/08/29/59a533bf5a302.jpg" alt="接入家庭 App" /></p>
+
+<p>▲接入家庭 App</p>
+
+<p>手动输入 PIN 码，就是在配置文件中任意写入的那个，你就可以通过这个“桥”连接到 Home Assistant 内的设备了。然后按照官方<a href="https://support.apple.com/zh-cn/HT204893">设置教程</a>进行进一步命名设备。</p>
+
+<h3 id="自动化和远程访问-homekit-配件">自动化和远程访问 HomeKit 配件</h3>
+
+<p>你可以将 iPad 或 Apple TV（第 4 代）设置为家居中枢，以便在 iOS 设备上实现对 HomeKit 配件的自动化和进行远程控制。设为家居中枢的设备必须留在家中、<a href="https://support.apple.com/zh-cn/HT202639">连接到家中 Wi-Fi 网络</a>且处于开机状态。</p>
+
+<p><img src="https://support.apple.com/library/content/dam/edam/applecare/images/zh_CN/iOS/ios10-ipad-atv-homekit-automation-hero.jpg" alt="自动化和远程访问 HomeKit 配件" /></p>
+
+<p>▲自动化和远程访问 HomeKit 配件</p>
+
+<h4 id="将-ipad-设置为家居中枢">将 iPad 设置为家居中枢</h4>
+
+<p>在“设置”&gt;“iCloud” 中打开“<a href="https://support.apple.com/zh-cn/HT204085">iCloud 钥匙串</a>”和“家庭”，前往“设置”&gt;“家庭”并打开“将此 iPad 用作家庭中枢”</p>
+
+<h4 id="将-apple-tv-设置为家居中枢">将 Apple TV 设置为家居中枢</h4>
+
+<p>在 iOS 设备或 Mac 上，<a href="https://support.apple.com/zh-cn/HT204915">为您的 Apple ID 设置双重认证</a>。然后，前往 iCloud 并确保“<a href="https://support.apple.com/zh-cn/HT204085">iCloud 钥匙串</a>”已开启。在 Apple TV 上，前往“设置”&gt;“帐户”并确保已登录到 iCloud，且使用的 Apple ID 与 iOS 设备上的相同。登录到 iCloud 后，Apple TV 会自动被设置为家居中枢。要检查家居中枢的状态，请前往“设置”&gt;“帐户”&gt;“iCloud”，然后在“HomeKit”下查看家居中枢是否已连接。</p>
+
+<h2 id="四-下节预告">四、下节预告</h2>
+
+<p>完成设备的接入，智能家居系统开始有点像样了。我想你们肯定还存在很多问题，“我的设备怎么在 Home Assistant 里重新命名？”“如何分组？”“有些设备我不想加入 HomeKit 里。”“我想要更炫酷的界面！”“这不就是个遥控器嘛，我不需要。”诸如此类。下节教程将对 Home Assistant 进行进一步配置，实现个性化布局，同时对 Home Assistant 的自动化（Automations）做入门讲解。</p>
+
+<ul>
+<li>Home Assistant 进阶设置</li>
+<li>Home Assistant 自动化</li>
+</ul>
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+
+
+
+
+
+
+
+
+<figure class="author-image">
+    <a class="img" href="https://jun-long.github.io/" style="background-image: url(/images/logo.png)"><span class="hidden">Junlong's Picture</span></a>
+</figure>
+
+
+<section class="author">
+  <h4><a href="https://jun-long.github.io/">Junlong</a></h4>
+  
+  <p>智能改造家</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">Hubei, China</span>
+    <span class="author-link icon-link"><a href="https://jun-long.github.io">https://jun-long.github.io</a></span>
+  </div>
+</section>
+
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=%e6%a0%91%e8%8e%93%e6%b4%be%20%2b%20Home%20Assistant%20%2b%20HomeKit%20%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%e6%89%93%e9%80%a0%e4%b8%aa%e4%ba%ba%e6%99%ba%e8%83%bd%e5%ae%b6%e5%b1%85%e7%b3%bb%e7%bb%9f%ef%bc%884%ef%bc%89%ef%bc%9a%e8%bf%9e%e6%8e%a5%e5%b0%8f%e7%b1%b3%e8%ae%be%e5%a4%87%e4%b8%8eHomeKit&nbsp;-&nbsp;%e6%99%ba%e8%83%bd%e6%94%b9%e9%80%a0%e5%ae%b6&amp;url=https%3a%2f%2fjun-long.github.io%2fpost%2f15037439183633%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fjun-long.github.io%2fpost%2f15037439183633%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=https%3a%2f%2fjun-long.github.io%2fpost%2f15037439183633%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+
+
+
+
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+      <a class="read-next-story" style="background-image: url(https://ooo.0o0.ooo/2017/08/29/59a56b9e207d9.jpg)" href="https://jun-long.github.io/post/15039392986790/">
+          <section class="post">
+              <h2>树莓派 &#43; Home Assistant &#43; HomeKit 从零开始打造个人智能家居系统（5）：进阶配置 Home Assistant</h2>
+              
+          </section>
+      </a>
+  
+  
+      <a class="read-next-story prev" style="background-image: url(https://i.loli.net/2017/08/25/599ff33505660.jpg)" href="https://jun-long.github.io/post/15037439183550/">
+          <section class="post">
+              <h2>树莓派 &#43; Home Assistant &#43; HomeKit 从零开始打造个人智能家居系统（3）：初步配置 Home Assistant</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">智能改造家</a> &copy; 2017</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="https://jun-long.github.io/js/jquery.js"></script>
+    <script type="text/javascript" src="https://jun-long.github.io/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="https://jun-long.github.io/js/index.js"></script>
+    
+</body>
+</html>
+
